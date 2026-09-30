@@ -12,39 +12,45 @@ if ($_SESSION['tipo_usuario'] !== 'administrador') {
     exit;
 }
 
-require_once '../../../dao/LocalDAO.php';
-require_once '../../../dao/CategoriaDAO.php';
 require_once '../../../controller/LocalController.php';
+require_once '../../../controller/CategoriaController.php';
+require_once '../../../controller/CidadeController.php';
 
-$localDAO = new LocalDAO();
-$categoriaDAO = new CategoriaDAO();
+$localController = new LocalController();
+$categoriaController = new CategoriaController();
+$cidadeController = new CidadeController();
 
-$locais = $localDAO->listar();
-$categorias = $categoriaDAO->listar();
+$categorias = $categoriaController->listar();
+$cidades = $cidadeController->listar();
 
-$id = isset($_GET['id']) ? $_GET['id'] : null;
+if (!isset($_GET['id'])) {
+    header('Location: index.php');
+    exit;
+}
 
-$localSelecionado = null;
+$id = (int) $_GET['id'];
 
-foreach ($locais as $local) {
+$locais = $localController->listar();
 
-    if ($local['id_local'] == $id) {
+$local = null;
 
-        $localSelecionado = $local;
+foreach ($locais as $item) {
+    if ((int) $item['id_local'] === $id) {
+        $local = $item;
         break;
     }
 }
 
-if ($localSelecionado === null) {
-
-    die('Local não encontrado.');
+if (!$local) {
+    echo "Local não encontrado.";
+    exit;
 }
 
 if (isset($_POST['editar_local'])) {
 
     $dados = [
-
-        'id_local' => $_POST['id_local'],
+        'id_local' => $id,
+        'id_cidade' => $_POST['id_cidade'],
         'id_categoria' => $_POST['id_categoria'],
         'nome' => $_POST['nome'],
         'descricao' => $_POST['descricao'],
@@ -52,12 +58,8 @@ if (isset($_POST['editar_local'])) {
         'telefone' => $_POST['telefone'],
         'email' => $_POST['email'],
         'horario_funcionamento' => $_POST['horario_funcionamento'],
-        'preco' => $_POST['preco'] !== ''
-            ? $_POST['preco']
-            : null
+        'preco' => $_POST['preco'] !== '' ? $_POST['preco'] : null
     ];
-
-    $localController = new LocalController();
 
     $localController->editar($dados);
 
@@ -74,48 +76,83 @@ if (isset($_POST['editar_local'])) {
 
     <meta charset="UTF-8">
 
-    <title>Editar Local - Turismo-Lafa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editar Local - Tour Local</title>
 
 </head>
 
 <body>
 
-    <h1>Turismo-Lafa</h1>
+<header>
+
+    <h1>Tour Local</h1>
+
+    <p>Painel administrativo</p>
+
+</header>
+
+<main>
 
     <h2>Editar Local</h2>
 
     <form method="POST">
 
-        <input
-            type="hidden"
-            name="id_local"
-            value="<?= $localSelecionado['id_local'] ?>"
-        >
-
-        <label>Nome:</label>
-        <br>
+        <label for="nome">Nome:</label><br>
 
         <input
             type="text"
+            id="nome"
             name="nome"
-            value="<?= htmlspecialchars($localSelecionado['nome']) ?>"
+            value="<?= htmlspecialchars($local['nome']) ?>"
             required
         >
 
         <br><br>
 
-        <label>Categoria:</label>
-        <br>
+        <label for="cidade">Cidade:</label><br>
 
-        <select name="id_categoria" required>
+        <select
+            id="cidade"
+            name="id_cidade"
+            required
+        >
+
+            <option value="">Selecione uma cidade</option>
+
+            <?php foreach ($cidades as $cidade): ?>
+
+                <option
+                    value="<?= $cidade['id_cidade'] ?>"
+                    <?= $local['id_cidade'] == $cidade['id_cidade'] ? 'selected' : '' ?>
+                >
+
+                    <?= htmlspecialchars($cidade['nome']) ?> -
+                    <?= htmlspecialchars($cidade['estado']) ?>
+
+                </option>
+
+            <?php endforeach; ?>
+
+        </select>
+
+        <br><br>
+
+        <label for="categoria">Categoria:</label><br>
+
+        <select
+            id="categoria"
+            name="id_categoria"
+            required
+        >
+
+            <option value="">Selecione uma categoria</option>
 
             <?php foreach ($categorias as $categoria): ?>
 
                 <option
                     value="<?= $categoria['id_categoria'] ?>"
-                    <?= $categoria['id_categoria'] == $localSelecionado['id_categoria']
-                        ? 'selected'
-                        : '' ?>
+                    <?= $local['id_categoria'] == $categoria['id_categoria'] ? 'selected' : '' ?>
                 >
 
                     <?= htmlspecialchars($categoria['nome']) ?>
@@ -128,66 +165,72 @@ if (isset($_POST['editar_local'])) {
 
         <br><br>
 
-        <label>Descrição:</label>
-        <br>
+        <label for="descricao">Descrição:</label><br>
 
-        <textarea name="descricao"><?= htmlspecialchars($localSelecionado['descricao']) ?></textarea>
+        <textarea
+            id="descricao"
+            name="descricao"
+            rows="5"
+        ><?= htmlspecialchars($local['descricao']) ?></textarea>
 
         <br><br>
 
-        <label>Endereço:</label>
-        <br>
+        <label for="endereco">Endereço:</label><br>
 
         <input
             type="text"
+            id="endereco"
             name="endereco"
-            value="<?= htmlspecialchars($localSelecionado['endereco']) ?>"
+            value="<?= htmlspecialchars($local['endereco']) ?>"
             required
         >
 
         <br><br>
 
-        <label>Telefone:</label>
-        <br>
+        <label for="telefone">Telefone:</label><br>
 
         <input
             type="text"
+            id="telefone"
             name="telefone"
-            value="<?= htmlspecialchars($localSelecionado['telefone'] ?? '') ?>"
+            value="<?= htmlspecialchars($local['telefone']) ?>"
         >
 
         <br><br>
 
-        <label>E-mail:</label>
-        <br>
+        <label for="email">E-mail:</label><br>
 
         <input
             type="email"
+            id="email"
             name="email"
-            value="<?= htmlspecialchars($localSelecionado['email'] ?? '') ?>"
+            value="<?= htmlspecialchars($local['email']) ?>"
         >
 
         <br><br>
 
-        <label>Horário de funcionamento:</label>
-        <br>
+        <label for="horario_funcionamento">
+            Horário de funcionamento:
+        </label><br>
 
         <input
             type="text"
+            id="horario_funcionamento"
             name="horario_funcionamento"
-            value="<?= htmlspecialchars($localSelecionado['horario_funcionamento'] ?? '') ?>"
+            value="<?= htmlspecialchars($local['horario_funcionamento']) ?>"
         >
 
         <br><br>
 
-        <label>Preço:</label>
-        <br>
+        <label for="preco">Preço:</label><br>
 
         <input
             type="number"
+            id="preco"
             name="preco"
             step="0.01"
-            value="<?= htmlspecialchars($localSelecionado['preco'] ?? '') ?>"
+            min="0"
+            value="<?= htmlspecialchars($local['preco']) ?>"
         >
 
         <br><br>
@@ -200,9 +243,17 @@ if (isset($_POST['editar_local'])) {
 
     <br>
 
-    <a href="index.php">
-        Voltar para locais
-    </a>
+    <a href="index.php">Voltar para locais</a>
+
+</main>
+
+<footer>
+
+    <p>
+        <a href="../../logout.php">Sair</a>
+    </p>
+
+</footer>
 
 </body>
 

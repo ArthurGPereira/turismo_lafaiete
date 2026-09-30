@@ -16,14 +16,28 @@ require_once '../../../controller/CategoriaController.php';
 
 $categoriaController = new CategoriaController();
 
-if (isset($_POST['cadastrar_categoria'])) {
+if (!isset($_GET['id'])) {
+    header('Location: index.php');
+    exit;
+}
+
+$id = $_GET['id'];
+
+$categoria = $categoriaController->buscarPorId($id);
+
+if (!$categoria) {
+    die('Categoria não encontrada.');
+}
+
+if (isset($_POST['editar_categoria'])) {
 
     $dados = [
+        'id_categoria' => $_POST['id_categoria'],
         'nome' => $_POST['nome'],
         'descricao' => $_POST['descricao']
     ];
 
-    $categoriaController->cadastrar($dados);
+    $categoriaController->editar($dados);
 
     header('Location: index.php');
     exit;
@@ -43,7 +57,7 @@ if (isset($_POST['cadastrar_categoria'])) {
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Cadastrar Categoria - Turismo-Lafa</title>
+    <title>Editar Categoria - Tour Local</title>
 
 </head>
 
@@ -51,7 +65,7 @@ if (isset($_POST['cadastrar_categoria'])) {
 
     <header>
 
-        <h1>Turismo-Lafa</h1>
+        <h1>Tour Local</h1>
 
         <p>Painel administrativo</p>
 
@@ -59,9 +73,15 @@ if (isset($_POST['cadastrar_categoria'])) {
 
     <main>
 
-        <h2>Cadastrar Categoria</h2>
+        <h2>Editar Categoria</h2>
 
         <form method="POST">
+
+            <input
+                type="hidden"
+                name="id_categoria"
+                value="<?= $categoria['id_categoria'] ?>"
+            >
 
             <label for="nome">
                 Nome da categoria:
@@ -73,6 +93,7 @@ if (isset($_POST['cadastrar_categoria'])) {
                 type="text"
                 id="nome"
                 name="nome"
+                value="<?= htmlspecialchars($categoria['nome']) ?>"
                 required
             >
 
@@ -88,15 +109,15 @@ if (isset($_POST['cadastrar_categoria'])) {
                 id="descricao"
                 name="descricao"
                 rows="5"
-            ></textarea>
+            ><?= htmlspecialchars($categoria['descricao'] ?? '') ?></textarea>
 
             <br><br>
 
             <button
                 type="submit"
-                name="cadastrar_categoria"
+                name="editar_categoria"
             >
-                Cadastrar
+                Salvar alterações
             </button>
 
         </form>

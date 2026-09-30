@@ -32,129 +32,419 @@ $locais = $localController->listar();
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Gerenciar Locais - Turismo-Lafa</title>
+    <title>Gerenciar Locais - Tour Local</title>
+
+    <link
+        rel="stylesheet"
+        href="../../../assets/css/global.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../../assets/css/admin.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
 </head>
 
 <body>
 
-    <header>
+<div class="admin-page">
 
-        <h1>Turismo-Lafa</h1>
 
-        <p>
-            Painel administrativo
-        </p>
+    <!-- SIDEBAR -->
 
-    </header>
+    <aside class="admin-sidebar">
 
-    <main>
+        <div class="admin-brand">
 
-        <h2>Gerenciar Locais</h2>
+            <h1>Tour Local</h1>
 
-        <p>
-            Olá,
-            <?= htmlspecialchars($_SESSION['nome_usuario']) ?>!
-        </p>
+            <span>
+                Painel administrativo
+            </span>
 
-        <hr>
+        </div>
 
-        <p>
 
-            <a href="cadastro.php">
-                Cadastrar novo local
-            </a>
+        <nav class="admin-menu">
 
-            |
+            <div class="admin-menu-title">
+                Gerenciamento
+            </div>
+
 
             <a href="../index.php">
-                Voltar para o painel
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
             </a>
 
-        </p>
 
-        <hr>
+            <a href="index.php" class="active">
 
-        <h3>Locais cadastrados</h3>
+                <i class="fa-solid fa-location-dot"></i>
 
-        <?php if (count($locais) > 0): ?>
+                <span>
+                    Locais
+                </span>
 
-            <?php foreach ($locais as $local): ?>
+            </a>
 
-                <section>
 
-                    <h4>
-                        <?= htmlspecialchars($local['nome']) ?>
-                    </h4>
+            <a href="../categoria/index.php">
 
-                    <p>
-                        <strong>Categoria:</strong>
-                        <?= htmlspecialchars($local['categoria']) ?>
-                    </p>
+                <i class="fa-solid fa-layer-group"></i>
 
-                    <p>
-                        <strong>Cidade:</strong>
-                        <?= htmlspecialchars($local['cidade']) ?>
-                    </p>
+                <span>
+                    Categorias
+                </span>
 
-                    <p>
-                        <strong>Endereço:</strong>
-                        <?= htmlspecialchars($local['endereco']) ?>
-                    </p>
+            </a>
 
-                    <?php if (!empty($local['descricao'])): ?>
+
+            <a href="../cidade/index.php">
+
+                <i class="fa-solid fa-city"></i>
+
+                <span>
+                    Cidades
+                </span>
+
+            </a>
+
+
+            <a href="../usuario/index.php">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>
+                    Usuários
+                </span>
+
+            </a>
+
+
+            <div class="admin-menu-title">
+                Sistema
+            </div>
+
+
+            <a href="../../perfil.php">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>
+                    Meu perfil
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="admin-sidebar-footer">
+
+            <a href="../../logout.php">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Sair da conta
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="admin-content">
+
+
+        <!-- CABEÇALHO -->
+
+        <header class="admin-header">
+
+            <h2>
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                Locais
+
+            </h2>
+
+
+            <div class="admin-user">
+
+                <div class="admin-user-icon">
+
+                    <?= strtoupper(
+                        substr($_SESSION['nome_usuario'], 0, 1)
+                    ) ?>
+
+                </div>
+
+
+                <span>
+
+                    <?= htmlspecialchars(
+                        $_SESSION['nome_usuario']
+                    ) ?>
+
+                </span>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- PRINCIPAL -->
+
+        <section class="admin-main">
+
+
+            <!-- TÍTULO -->
+
+            <div class="admin-welcome">
+
+                <h1>
+                    Gerenciar locais
+                </h1>
+
+                <p>
+                    Cadastre e gerencie os pontos turísticos,
+                    restaurantes e espaços disponíveis no Tour Local.
+                </p>
+
+            </div>
+
+
+
+            <!-- LISTAGEM -->
+
+            <div class="admin-section">
+
+
+                <div class="admin-section-header">
+
+                    <div>
+
+                        <h3>
+
+                            <i class="fa-solid fa-list"></i>
+
+                            Locais cadastrados
+
+                        </h3>
 
                         <p>
-                            <strong>Descrição:</strong>
-                            <?= htmlspecialchars($local['descricao']) ?>
+
+                            <?= count($locais) ?>
+
+                            local(is) cadastrado(s).
+
                         </p>
 
-                    <?php endif; ?>
+                    </div>
 
-                    <p>
 
-                        <a
-                            href="editar.php?id=<?= $local['id_local'] ?>"
-                        >
-                            Editar
-                        </a>
+                    <a
+                        href="cadastro.php"
+                        class="btn"
+                    >
 
-                        |
+                        <i class="fa-solid fa-plus"></i>
 
-                        <a
-                            href="excluir.php?id=<?= $local['id_local'] ?>"
-                            onclick="return confirm('Tem certeza que deseja excluir este local?')"
-                        >
-                            Excluir
-                        </a>
+                        Novo local
+
+                    </a>
+
+                </div>
+
+
+
+                <?php if (!empty($locais)): ?>
+
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Nome
+                                </th>
+
+                                <th>
+                                    Categoria
+                                </th>
+
+                                <th>
+                                    Cidade
+                                </th>
+
+                                <th>
+                                    Endereço
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                        <?php foreach ($locais as $local): ?>
+
+
+                            <tr>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars(
+                                        $local['nome']
+                                    ) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars(
+                                        $local['categoria']
+                                    ) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars(
+                                        $local['cidade']
+                                    ) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars(
+                                        $local['endereco']
+                                    ) ?>
+
+                                </td>
+
+
+                                <td>
+
+
+                                    <a
+                                        href="editar.php?id=<?= $local['id_local'] ?>"
+                                        class="btn btn-secondary"
+                                    >
+
+                                        <i class="fa-solid fa-pen"></i>
+
+                                        Editar
+
+                                    </a>
+
+
+                                    <a
+                                        href="../foto/index.php?id_local=<?= $local['id_local'] ?>"
+                                        class="btn btn-secondary"
+                                    >
+
+                                        <i class="fa-solid fa-images"></i>
+
+                                        Fotos
+
+                                    </a>
+
+
+                                    <a
+                                        href="excluir.php?id=<?= $local['id_local'] ?>"
+                                        class="btn btn-danger"
+                                        onclick="return confirm('Tem certeza que deseja excluir este local?');"
+                                    >
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                        Excluir
+
+                                    </a>
+
+
+                                </td>
+
+
+                            </tr>
+
+
+                        <?php endforeach; ?>
+
+
+                        </tbody>
+
+                    </table>
+
+
+                <?php else: ?>
+
+
+                    <p class="text-center">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Nenhum local cadastrado.
 
                     </p>
 
-                    <hr>
 
-                </section>
+                <?php endif; ?>
 
-            <?php endforeach; ?>
 
-        <?php else: ?>
+            </div>
 
-            <p>
-                Nenhum local cadastrado.
-            </p>
 
-        <?php endif; ?>
+
+            <!-- VOLTAR -->
+
+            <a href="../index.php">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Voltar para o painel
+
+            </a>
+
+
+        </section>
 
     </main>
 
-    <footer>
-
-        <p>
-            <a href="../../logout.php">
-                Sair
-            </a>
-        </p>
-
-    </footer>
+</div>
 
 </body>
 

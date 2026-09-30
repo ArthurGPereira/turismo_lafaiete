@@ -12,16 +12,21 @@ if ($_SESSION['tipo_usuario'] !== 'administrador') {
     exit;
 }
 
-require_once '../../../dao/CategoriaDAO.php';
 require_once '../../../controller/LocalController.php';
+require_once '../../../controller/CategoriaController.php';
+require_once '../../../controller/CidadeController.php';
 
-$categoriaDAO = new CategoriaDAO();
-$categorias = $categoriaDAO->listar();
+$localController = new LocalController();
+$categoriaController = new CategoriaController();
+$cidadeController = new CidadeController();
+
+$categorias = $categoriaController->listar();
+$cidades = $cidadeController->listar();
 
 if (isset($_POST['cadastrar_local'])) {
 
     $dados = [
-        'id_cidade' => 1,
+        'id_cidade' => $_POST['id_cidade'],
         'id_categoria' => $_POST['id_categoria'],
         'nome' => $_POST['nome'],
         'descricao' => $_POST['descricao'],
@@ -35,8 +40,6 @@ if (isset($_POST['cadastrar_local'])) {
         'status' => 'ativo'
     ];
 
-    $localController = new LocalController();
-
     $localController->cadastrar($dados);
 
     header('Location: index.php');
@@ -49,47 +52,50 @@ if (isset($_POST['cadastrar_local'])) {
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastrar Local - Turismo-Lafa</title>
-
+    <title>Cadastrar Local - Tour Local</title>
 </head>
 
 <body>
 
-    <h1>Turismo-Lafa</h1>
+<header>
+
+    <h1>Tour Local</h1>
+
+    <p>Painel administrativo</p>
+
+</header>
+
+<main>
 
     <h2>Cadastrar Local</h2>
 
     <form method="POST">
 
-        <label>Nome:</label>
-        <br>
+        <label for="nome">Nome:</label><br>
 
         <input
             type="text"
+            id="nome"
             name="nome"
             required
         >
 
         <br><br>
 
-        <label>Categoria:</label>
-        <br>
+        <label for="cidade">Cidade:</label><br>
 
-        <select name="id_categoria" required>
+        <select id="cidade" name="id_cidade" required>
 
-            <option value="">
-                Selecione
-            </option>
+            <option value="">Selecione uma cidade</option>
 
-            <?php foreach ($categorias as $categoria): ?>
+            <?php foreach ($cidades as $cidade): ?>
 
-                <option value="<?= $categoria['id_categoria'] ?>">
-
-                    <?= htmlspecialchars($categoria['nome']) ?>
-
+                <option value="<?= $cidade['id_cidade'] ?>">
+                    <?= htmlspecialchars($cidade['nome']) ?> -
+                    <?= htmlspecialchars($cidade['estado']) ?>
                 </option>
 
             <?php endforeach; ?>
@@ -98,76 +104,106 @@ if (isset($_POST['cadastrar_local'])) {
 
         <br><br>
 
-        <label>Descrição:</label>
-        <br>
+        <label for="categoria">Categoria:</label><br>
 
-        <textarea name="descricao"></textarea>
+        <select id="categoria" name="id_categoria" required>
+
+            <option value="">Selecione uma categoria</option>
+
+            <?php foreach ($categorias as $categoria): ?>
+
+                <option value="<?= $categoria['id_categoria'] ?>">
+                    <?= htmlspecialchars($categoria['nome']) ?>
+                </option>
+
+            <?php endforeach; ?>
+
+        </select>
 
         <br><br>
 
-        <label>Endereço:</label>
-        <br>
+        <label for="descricao">Descrição:</label><br>
+
+        <textarea
+            id="descricao"
+            name="descricao"
+            rows="5"
+        ></textarea>
+
+        <br><br>
+
+        <label for="endereco">Endereço:</label><br>
 
         <input
             type="text"
+            id="endereco"
             name="endereco"
             required
         >
 
         <br><br>
 
-        <label>Telefone:</label>
-        <br>
+        <label for="telefone">Telefone:</label><br>
 
         <input
             type="text"
+            id="telefone"
             name="telefone"
         >
 
         <br><br>
 
-        <label>E-mail:</label>
-        <br>
+        <label for="email">E-mail:</label><br>
 
         <input
             type="email"
+            id="email"
             name="email"
         >
 
         <br><br>
 
-        <label>Horário de funcionamento:</label>
-        <br>
+        <label for="horario_funcionamento">Horário de funcionamento:</label><br>
 
         <input
             type="text"
+            id="horario_funcionamento"
             name="horario_funcionamento"
         >
 
         <br><br>
 
-        <label>Preço:</label>
-        <br>
+        <label for="preco">Preço:</label><br>
 
         <input
             type="number"
+            id="preco"
             name="preco"
             step="0.01"
+            min="0"
         >
 
         <br><br>
 
         <button type="submit" name="cadastrar_local">
-            Cadastrar
+            Cadastrar local
         </button>
 
     </form>
 
     <br>
 
-    <a href="index.php">
-        Voltar para locais
-    </a>
+    <a href="index.php">Voltar para locais</a>
+
+</main>
+
+<footer>
+
+    <p>
+        <a href="../../logout.php">Sair</a>
+    </p>
+
+</footer>
 
 </body>
 

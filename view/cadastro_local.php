@@ -15,13 +15,13 @@ $categorias = $categoriaDAO->listar();
 
     <meta charset="UTF-8">
 
-    <title>Cadastrar Local - Turismo-Lafa</title>
+    <title>Cadastrar Local - Tour Local</title>
 
 </head>
 
 <body>
 
-    <h1>Turismo-Lafa</h1>
+    <h1>Tour Local</h1>
 
     <h2>Cadastrar Local</h2>
 

@@ -39,13 +39,13 @@ if (isset($_POST['entrar'])) {
 
     <meta charset="UTF-8">
 
-    <title>Login - Turismo-Lafa</title>
+    <title>Login - Tour Local</title>
 
 </head>
 
 <body>
 
-    <h1>Turismo-Lafa</h1>
+    <h1>Tour Local</h1>
 
     <h2>Login</h2>
 

@@ -1,0 +1,585 @@
+/* =========================================
+   Tour Local
+   PAINEL ADMINISTRATIVO
+========================================= */
+
+.admin-page {
+    min-height: 100vh;
+    background: #f4f7f9;
+    display: flex;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.admin-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #123b4a;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-brand {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.admin-brand h1 {
+    color: #fff;
+    font-size: 23px;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.admin-brand span {
+    display: block;
+    margin-top: 4px;
+    color: #b9d1d9;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.admin-menu {
+    padding: 20px 14px;
+    flex: 1;
+}
+
+.admin-menu-title {
+    color: #8fb0bb;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 12px 10px;
+}
+
+.admin-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 4px;
+    border-radius: 7px;
+    color: #dce9ed;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.admin-menu a:hover {
+    background: #1c5669;
+    color: #fff;
+}
+
+.admin-menu a.active {
+    background: #e3a72f;
+    color: #123b4a;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   RODAPÉ DA SIDEBAR
+========================================= */
+
+.admin-sidebar-footer {
+    padding: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.admin-sidebar-footer a {
+    display: block;
+    color: #dce9ed;
+    font-size: 14px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.admin-sidebar-footer a:hover {
+    color: #e3a72f;
+}
+
+
+/* =========================================
+   CONTEÚDO
+========================================= */
+
+.admin-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   TOPO
+========================================= */
+
+.admin-header {
+    height: 78px;
+    background: #fff;
+    border-bottom: 1px solid #e1e8ec;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+    box-sizing: border-box;
+}
+
+.admin-header h2 {
+    font-size: 21px;
+    color: #183d4a;
+    margin: 0;
+}
+
+.admin-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #526b74;
+    font-size: 14px;
+}
+
+.admin-user-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #e8f1f3;
+    color: #155e75;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   ÁREA PRINCIPAL
+========================================= */
+
+.admin-main {
+    padding: 35px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.admin-welcome {
+    margin-bottom: 30px;
+}
+
+.admin-welcome h1 {
+    color: #183d4a;
+    font-size: 28px;
+    margin: 0 0 5px 0;
+}
+
+.admin-welcome p {
+    color: #71858d;
+    margin: 0;
+}
+
+
+/* =========================================
+   CARDS DE RESUMO
+========================================= */
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.admin-stat {
+    background: #fff;
+    border: 1px solid #e3e9ec;
+    border-radius: 9px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.admin-stat::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #e3a72f;
+}
+
+.admin-stat-label {
+    color: #71858d;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.admin-stat-number {
+    color: #183d4a;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   ÁREAS DO PAINEL
+========================================= */
+
+.admin-section {
+    background: #fff;
+    border: 1px solid #e3e9ec;
+    border-radius: 9px;
+    padding: 24px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+}
+
+.admin-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.admin-section-header h3 {
+    color: #183d4a;
+    font-size: 18px;
+    margin: 0;
+}
+
+.admin-section-header p {
+    color: #71858d;
+    font-size: 13px;
+    margin: 5px 0 0 0;
+}
+
+
+/* =========================================
+   ACESSOS RÁPIDOS
+========================================= */
+
+.admin-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-quick-actions .btn {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+/* =========================================
+   TABELAS
+========================================= */
+
+.admin-section table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin: 0;
+}
+
+.admin-section table th {
+    background: #17677d;
+    color: #fff;
+    text-align: left;
+    padding: 15px 16px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.admin-section table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e1e8ec;
+    color: #182b35;
+    vertical-align: middle;
+    font-size: 14px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.admin-section table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================
+   COLUNAS DA TABELA
+========================================= */
+
+/* ID */
+
+.admin-section table th:first-child,
+.admin-section table td:first-child {
+    width: 8%;
+}
+
+
+/* NOME */
+
+.admin-section table th:nth-child(2),
+.admin-section table td:nth-child(2) {
+    width: 22%;
+}
+
+
+/* DESCRIÇÃO */
+
+.admin-section table th:nth-child(3),
+.admin-section table td:nth-child(3) {
+    width: 40%;
+}
+
+
+/* AÇÕES */
+
+.admin-section table th:last-child,
+.admin-section table td:last-child {
+    width: 30%;
+}
+
+
+/* =========================================
+   BOTÕES DAS AÇÕES
+========================================= */
+
+.admin-section table td:last-child {
+    white-space: normal;
+}
+
+.admin-section table td:last-child .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 75px;
+    margin: 3px 3px 3px 0;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   LINK VOLTAR
+========================================= */
+
+.admin-main > a {
+    color: #17677d;
+    text-decoration: none;
+}
+
+.admin-main > a:hover {
+    color: #123b4a;
+}
+
+
+/* =========================================
+   RESPONSIVO - TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .admin-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVO - CELULAR
+========================================= */
+
+@media (max-width: 750px) {
+
+    .admin-sidebar {
+        width: 70px;
+    }
+
+    .admin-brand {
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    .admin-brand h1 {
+        font-size: 0;
+    }
+
+    .admin-brand h1::after {
+        content: "TL";
+        font-size: 20px;
+    }
+
+    .admin-brand span,
+    .admin-menu-title {
+        display: none;
+    }
+
+    .admin-menu a {
+        justify-content: center;
+        font-size: 0;
+    }
+
+    .admin-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+
+    .admin-header {
+        padding: 0 20px;
+    }
+
+    .admin-main {
+        padding: 20px;
+    }
+
+    .admin-section {
+        padding: 18px;
+    }
+
+    .admin-quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================
+   CELULAR PEQUENO
+========================================= */
+
+@media (max-width: 550px) {
+
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-user {
+        display: none;
+    }
+
+    .admin-quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-section {
+        overflow-x: auto;
+    }
+
+    .admin-section table {
+        min-width: 650px;
+    }
+/* =========================================
+   ÍCONES
+========================================= */
+
+.admin-menu a i {
+    width: 20px;
+    text-align: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.admin-sidebar-footer a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-sidebar-footer a i {
+    width: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.admin-stat-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-stat-label i {
+    color: #155e75;
+    font-size: 13px;
+}
+
+.admin-section-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-section-header h3 i {
+    color: #155e75;
+    font-size: 15px;
+}
+
+.admin-quick-actions .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.admin-quick-actions .btn i {
+    font-size: 13px;
+}
+
+.admin-menu a.active i {
+    color: #123b4a;
+}
+
+.admin-menu a:hover i {
+    color: #fff;
+}
+
+
+/* =========================================
+   ÍCONES NO CELULAR
+========================================= */
+
+@media (max-width: 750px) {
+
+    .admin-menu a i {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .admin-sidebar-footer a {
+        justify-content: center;
+    }
+
+    .admin-sidebar-footer a span {
+        display: none;
+    }
+
+}
+}
