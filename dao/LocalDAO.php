@@ -137,7 +137,11 @@ class LocalDAO
             $local['status']
         );
 
-        return $stmt->execute();
+        if ($stmt->execute()) {
+            return $this->conexao->lastInsertId();
+        }
+
+        return false;
     }
 
     public function editar($local)

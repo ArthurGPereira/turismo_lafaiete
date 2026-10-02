@@ -36,4 +36,5 @@ class CategoriaController
         return $this->categoriaDAO->excluir($id);
     }
 }
+
 ?>

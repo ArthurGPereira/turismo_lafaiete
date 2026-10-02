@@ -8,7 +8,7 @@ $mensagem = '';
 
 if (isset($_POST['entrar'])) {
 
-    $email = $_POST['email'];
+    $email = trim($_POST['email']);
     $senha = $_POST['senha'];
 
     $usuarioController = new UsuarioController();
@@ -21,7 +21,12 @@ if (isset($_POST['entrar'])) {
         $_SESSION['nome_usuario'] = $usuario['nome'];
         $_SESSION['tipo_usuario'] = $usuario['tipo'];
 
-        header('Location: ../index.php');
+        if ($usuario['tipo'] === 'administrador') {
+            header('Location: admin/index.php');
+        } else {
+            header('Location: index.php');
+        }
+
         exit;
 
     } else {
@@ -39,59 +44,105 @@ if (isset($_POST['entrar'])) {
 
     <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Login - Tour Local</title>
+
+    <link rel="stylesheet" href="assets/css/login.css">
 
 </head>
 
 <body>
 
-    <h1>Tour Local</h1>
+    <main class="login-page">
 
-    <h2>Login</h2>
+        <section class="login-card">
 
-    <?php if ($mensagem != ''): ?>
+            <div class="login-header">
 
-        <p>
-            <?= htmlspecialchars($mensagem) ?>
-        </p>
+                <h1>Tour Local</h1>
 
-    <?php endif; ?>
+                <p>
+                    Entre na sua conta
+                </p>
 
-    <form method="POST">
+            </div>
 
-        <label>E-mail:</label>
-        <br>
 
-        <input
-            type="email"
-            name="email"
-            required
-        >
+            <?php if ($mensagem != ''): ?>
 
-        <br><br>
+                <div class="login-error">
 
-        <label>Senha:</label>
-        <br>
+                    <?= htmlspecialchars($mensagem) ?>
 
-        <input
-            type="password"
-            name="senha"
-            required
-        >
+                </div>
 
-        <br><br>
+            <?php endif; ?>
 
-        <button type="submit" name="entrar">
-            Entrar
-        </button>
 
-    </form>
+            <form method="POST" class="login-form" autocomplete="off">
 
-    <br>
+                <div class="login-group">
 
-    <a href="../index.php">
-        Voltar
-    </a>
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="login-group">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    name="entrar"
+                    class="login-button"
+                >
+                    Entrar
+                </button>
+
+            </form>
+
+
+            <div class="login-footer">
+
+                <a href="index.php">
+                    Voltar para o início
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
 

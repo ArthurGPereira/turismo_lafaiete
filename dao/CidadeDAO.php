@@ -26,6 +26,7 @@ class CidadeDAO
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public function buscarPorId($id)
     {
         $sql = "
@@ -56,6 +57,7 @@ class CidadeDAO
                 estado,
                 descricao,
                 historia,
+                imagem,
                 status
             )
             VALUES
@@ -64,6 +66,7 @@ class CidadeDAO
                 :estado,
                 :descricao,
                 :historia,
+                :imagem,
                 :status
             )
         ";
@@ -74,6 +77,7 @@ class CidadeDAO
         $stmt->bindValue(':estado', $dados['estado']);
         $stmt->bindValue(':descricao', $dados['descricao']);
         $stmt->bindValue(':historia', $dados['historia']);
+        $stmt->bindValue(':imagem', $dados['imagem']);
         $stmt->bindValue(
             ':status',
             $dados['status'] ?? 'ativo'
@@ -91,6 +95,7 @@ class CidadeDAO
                 estado = :estado,
                 descricao = :descricao,
                 historia = :historia,
+                imagem = :imagem,
                 status = :status
             WHERE id_cidade = :id_cidade
         ";
@@ -101,6 +106,8 @@ class CidadeDAO
         $stmt->bindValue(':estado', $dados['estado']);
         $stmt->bindValue(':descricao', $dados['descricao']);
         $stmt->bindValue(':historia', $dados['historia']);
+        $stmt->bindValue(':imagem', $dados['imagem']);
+
         $stmt->bindValue(
             ':status',
             $dados['status']

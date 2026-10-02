@@ -12,6 +12,9 @@ class FotoDAO
         $this->conexao = Conexao::conectar();
     }
 
+    /*
+     * Lista todas as fotos de um determinado local
+     */
     public function listarPorLocal($id_local)
     {
         $sql = "
@@ -34,6 +37,10 @@ class FotoDAO
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    /*
+     * Busca uma foto pelo ID
+     */
     public function buscarPorId($id)
     {
         $sql = "
@@ -55,6 +62,10 @@ class FotoDAO
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+    /*
+     * Cadastra uma nova foto
+     */
     public function cadastrar($dados)
     {
         $sql = "
@@ -93,21 +104,72 @@ class FotoDAO
         return $stmt->execute();
     }
 
+
+    /*
+     * Exclui uma foto do banco e
+     * também remove o arquivo físico
+     */
     public function excluir($id)
     {
-        $sql = "
-            DELETE FROM foto
+        // Primeiro busca o caminho da imagem
+        $sqlBusca = "
+            SELECT caminho
+            FROM foto
             WHERE id_foto = :id_foto
         ";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmtBusca = $this->conexao->prepare($sqlBusca);
 
-        $stmt->bindValue(
+        $stmtBusca->bindValue(
             ':id_foto',
             $id,
             PDO::PARAM_INT
         );
-        return $stmt->execute();
+
+        $stmtBusca->execute();
+
+        $foto = $stmtBusca->fetch(PDO::FETCH_ASSOC);
+
+
+        // Foto não encontrada
+        if (!$foto) {
+            return false;
+        }
+
+
+        // Exclui o registro da tabela foto
+        $sqlExcluir = "
+            DELETE FROM foto
+            WHERE id_foto = :id_foto
+        ";
+
+        $stmtExcluir = $this->conexao->prepare($sqlExcluir);
+
+        $stmtExcluir->bindValue(
+            ':id_foto',
+            $id,
+            PDO::PARAM_INT
+        );
+
+
+        // Se não conseguiu excluir do banco
+        if (!$stmtExcluir->execute()) {
+            return false;
+        }
+
+
+        // Caminho físico do arquivo
+        $arquivo = __DIR__ . '/../' . $foto['caminho'];
+
+
+        // Remove o arquivo da pasta uploads
+        if (file_exists($arquivo)) {
+            unlink($arquivo);
+        }
+
+
+        return true;
     }
 }
+
 ?>

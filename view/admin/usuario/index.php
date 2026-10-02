@@ -32,115 +32,337 @@ $usuarios = $usuarioController->listar();
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Gerenciar Usuários - Tour Local</title>
+    <title>Usuários - Tour Local</title>
+
+    <link rel="stylesheet" href="../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../assets/css/admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
 </head>
 
 <body>
 
-    <header>
+<div class="admin-page">
 
-        <h1>Tour Local</h1>
+    <!-- SIDEBAR -->
 
-        <p>Painel administrativo</p>
+    <aside class="admin-sidebar">
 
-    </header>
+        <div class="admin-brand">
 
-    <main>
+            <h1>Tour Local</h1>
 
-        <h2>Gerenciar Usuários</h2>
+            <span>Painel administrativo</span>
 
-        <p>
+        </div>
+
+
+        <nav class="admin-menu">
+
+            <div class="admin-menu-title">
+                Gerenciamento
+            </div>
+
+
             <a href="../index.php">
-                Voltar para o painel
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Dashboard</span>
+
             </a>
-        </p>
 
-        <hr>
 
-        <?php if (empty($usuarios)): ?>
+            <a href="../local/index.php">
 
-            <p>Nenhum usuário cadastrado.</p>
+                <i class="fa-solid fa-location-dot"></i>
 
-        <?php else: ?>
+                <span>Locais</span>
 
-            <table border="1" cellpadding="10">
+            </a>
 
-                <thead>
 
-                    <tr>
+            <a href="../categoria/index.php">
 
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Tipo</th>
-                        <th>Ações</th>
+                <i class="fa-solid fa-layer-group"></i>
 
-                    </tr>
+                <span>Categorias</span>
 
-                </thead>
+            </a>
 
-                <tbody>
 
-                    <?php foreach ($usuarios as $usuario): ?>
+            <a href="../cidade/index.php">
 
-                        <tr>
+                <i class="fa-solid fa-city"></i>
 
-                            <td>
-                                <?= $usuario['id_usuario'] ?>
-                            </td>
+                <span>Cidades</span>
 
-                            <td>
-                                <?= htmlspecialchars($usuario['nome']) ?>
-                            </td>
+            </a>
 
-                            <td>
-                                <?= htmlspecialchars($usuario['email']) ?>
-                            </td>
 
-                            <td>
-                                <?= htmlspecialchars($usuario['tipo']) ?>
-                            </td>
+            <a href="index.php" class="active">
 
-                            <td>
+                <i class="fa-solid fa-users"></i>
 
-                                <a
-                                    href="editar.php?id=<?= $usuario['id_usuario'] ?>"
-                                >
-                                    Editar
-                                </a>
+                <span>Usuários</span>
 
-                                |
+            </a>
 
-                                <a
-                                    href="excluir.php?id=<?= $usuario['id_usuario'] ?>"
-                                >
-                                    Excluir
-                                </a>
 
-                            </td>
+            <div class="admin-menu-title">
+                Sistema
+            </div>
 
-                        </tr>
 
-                    <?php endforeach; ?>
+            <a href="../../perfil.php">
 
-                </tbody>
+                <i class="fa-solid fa-user"></i>
 
-            </table>
+                <span>Meu perfil</span>
 
-        <?php endif; ?>
+            </a>
+
+        </nav>
+
+
+        <div class="admin-sidebar-footer">
+
+            <a href="../../logout.php">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Sair da conta</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="admin-content">
+
+
+        <header class="admin-header">
+
+            <h2>Usuários</h2>
+
+
+            <div class="admin-user">
+
+                <div class="admin-user-icon">
+
+                    <?= strtoupper(
+                        substr($_SESSION['nome_usuario'], 0, 1)
+                    ) ?>
+
+                </div>
+
+
+                <span>
+
+                    <?= htmlspecialchars($_SESSION['nome_usuario']) ?>
+
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <section class="admin-main">
+
+
+            <div class="admin-section">
+
+
+                <div class="admin-section-header">
+
+                    <div>
+
+                        <h3>
+
+                            <i class="fa-solid fa-users"></i>
+
+                            Usuários cadastrados
+
+                        </h3>
+
+                        <p>
+                            Gerencie os usuários do Tour Local.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="cadastro.php"
+                        class="btn"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Novo usuário
+
+                    </a>
+
+                </div>
+
+
+                <?php if (isset($_GET['erro']) && $_GET['erro'] === 'proprio_usuario'): ?>
+
+                    <div class="admin-alert admin-alert-error">
+
+                        Você não pode excluir o próprio usuário.
+
+                    </div>
+
+                <?php endif; ?>
+
+
+                <?php if (empty($usuarios)): ?>
+
+                    <div class="admin-empty">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <p>
+                            Nenhum usuário cadastrado.
+                        </p>
+
+                    </div>
+
+
+                <?php else: ?>
+
+
+                    <div class="admin-table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>ID</th>
+
+                                    <th>Nome</th>
+
+                                    <th>E-mail</th>
+
+                                    <th>Tipo</th>
+
+                                    <th>Ações</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <?php foreach ($usuarios as $usuario): ?>
+
+                                    <tr>
+
+                                        <td>
+
+                                            <?= (int) $usuario['id_usuario'] ?>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <?= htmlspecialchars(
+                                                $usuario['nome']
+                                            ) ?>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <?= htmlspecialchars(
+                                                $usuario['email']
+                                            ) ?>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <?= htmlspecialchars(
+                                                $usuario['tipo']
+                                            ) ?>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <a
+                                                href="editar.php?id=<?= (int) $usuario['id_usuario'] ?>"
+                                                class="btn btn-secondary"
+                                            >
+
+                                                <i class="fa-solid fa-pen"></i>
+
+                                                Editar
+
+                                            </a>
+
+
+                                            <?php if (
+                                                (int) $usuario['id_usuario']
+                                                !==
+                                                (int) $_SESSION['id_usuario']
+                                            ): ?>
+
+                                                <a
+                                                    href="excluir.php?id=<?= (int) $usuario['id_usuario'] ?>"
+                                                    class="btn btn-danger"
+                                                    onclick="return confirm('Tem certeza que deseja excluir este usuário?');"
+                                                >
+
+                                                    <i class="fa-solid fa-trash"></i>
+
+                                                    Excluir
+
+                                                </a>
+
+                                            <?php endif; ?>
+
+                                        </td>
+
+                                    </tr>
+
+                                <?php endforeach; ?>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                <?php endif; ?>
+
+
+            </div>
+
+
+        </section>
+
 
     </main>
 
-    <footer>
-
-        <p>
-            <a href="../../logout.php">
-                Sair
-            </a>
-        </p>
-
-    </footer>
+</div>
 
 </body>
 
