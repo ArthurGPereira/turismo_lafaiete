@@ -36,13 +36,13 @@ if (isset($_POST['cadastrar'])) {
 
     <meta charset="UTF-8">
 
-    <title>Cadastrar Usuário - Tour Local</title>
+    <title>Cadastrar Usuário - ArTour</title>
 
 </head>
 
 <body>
 
-    <h1>Tour Local</h1>
+    <h1>ArTour</h1>
 
     <h2>Cadastrar usuário</h2>
 

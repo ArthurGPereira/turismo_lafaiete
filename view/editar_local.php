@@ -39,13 +39,13 @@ if ($localSelecionado === null) {
 
     <meta charset="UTF-8">
 
-    <title>Editar Local - Tour Local</title>
+    <title>Editar Local - ArTour</title>
 
 </head>
 
 <body>
 
-    <h1>Tour Local</h1>
+    <h1>ArTour</h1>
 
     <h2>Editar Local</h2>
 

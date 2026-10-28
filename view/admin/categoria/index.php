@@ -27,13 +27,27 @@ $categorias = $categoriaController->listar();
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Categorias - Tour Local</title>
+    <title>Categorias - ArTour</title>
 
-    <link rel="stylesheet" href="../../../assets/css/global.css">
+    <link
+        rel="stylesheet"
+        href="/Turismo-Lafa/assets/css/global.css?v=2"
+    >
 
-    <link rel="stylesheet" href="../../../assets/css/admin.css">
+    <link
+        rel="stylesheet"
+        href="/Turismo-Lafa/assets/css/admin.css?v=2"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/Turismo-Lafa/assets/css/categoria.css?v=2"
+    >
 
     <link
         rel="stylesheet"
@@ -47,21 +61,24 @@ $categorias = $categoriaController->listar();
 <div class="admin-page">
 
 
-    <!-- SIDEBAR -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
     <aside class="admin-sidebar">
 
         <div class="admin-brand">
 
-            <h1>Tour Local</h1>
+            <h1>ArTour</h1>
 
-            <span>Painel administrativo</span>
+            <span>
+                Assistente Regional de Turismo
+            </span>
 
         </div>
 
 
         <nav class="admin-menu">
-
 
             <div class="admin-menu-title">
                 Gerenciamento
@@ -72,7 +89,9 @@ $categorias = $categoriaController->listar();
 
                 <i class="fa-solid fa-chart-line"></i>
 
-                <span>Dashboard</span>
+                <span>
+                    Dashboard
+                </span>
 
             </a>
 
@@ -81,7 +100,9 @@ $categorias = $categoriaController->listar();
 
                 <i class="fa-solid fa-location-dot"></i>
 
-                <span>Locais</span>
+                <span>
+                    Locais
+                </span>
 
             </a>
 
@@ -90,7 +111,9 @@ $categorias = $categoriaController->listar();
 
                 <i class="fa-solid fa-layer-group"></i>
 
-                <span>Categorias</span>
+                <span>
+                    Categorias
+                </span>
 
             </a>
 
@@ -99,7 +122,9 @@ $categorias = $categoriaController->listar();
 
                 <i class="fa-solid fa-city"></i>
 
-                <span>Cidades</span>
+                <span>
+                    Cidades
+                </span>
 
             </a>
 
@@ -108,7 +133,9 @@ $categorias = $categoriaController->listar();
 
                 <i class="fa-solid fa-users"></i>
 
-                <span>Usuários</span>
+                <span>
+                    Usuários
+                </span>
 
             </a>
 
@@ -118,14 +145,26 @@ $categorias = $categoriaController->listar();
             </div>
 
 
+            <a href="/Turismo-Lafa/index.php">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Ver página inicial
+                </span>
+
+            </a>
+
+
             <a href="../../perfil.php">
 
                 <i class="fa-solid fa-user"></i>
 
-                <span>Meu perfil</span>
+                <span>
+                    Meu perfil
+                </span>
 
             </a>
-
 
         </nav>
 
@@ -136,7 +175,9 @@ $categorias = $categoriaController->listar();
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
-                <span>Sair da conta</span>
+                <span>
+                    Sair da conta
+                </span>
 
             </a>
 
@@ -146,12 +187,16 @@ $categorias = $categoriaController->listar();
 
 
 
-    <!-- CONTEÚDO -->
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
 
     <main class="admin-content">
 
 
-        <!-- CABEÇALHO -->
+        <!-- =================================================
+             CABEÇALHO
+        ================================================== -->
 
         <header class="admin-header">
 
@@ -174,9 +219,12 @@ $categorias = $categoriaController->listar();
 
                 </div>
 
+
                 <span>
 
-                    <?= htmlspecialchars($_SESSION['nome_usuario']) ?>
+                    <?= htmlspecialchars(
+                        $_SESSION['nome_usuario']
+                    ) ?>
 
                 </span>
 
@@ -186,155 +234,141 @@ $categorias = $categoriaController->listar();
 
 
 
-        <!-- PRINCIPAL -->
+        <!-- =================================================
+             CONTEÚDO DA PÁGINA
+        ================================================== -->
 
         <section class="admin-main">
 
 
-            <!-- TÍTULO -->
-
-            <div class="admin-welcome">
-
-                <h1>
-
-                    Gerenciar categorias
-
-                </h1>
+            <div class="categoria-lista">
 
 
-                <p>
+                <!-- =============================================
+                     TÍTULO
+                ============================================== -->
 
-                    Organize os tipos de locais disponíveis no Tour Local.
-
-                </p>
-
-            </div>
-
-
-
-            <!-- TABELA -->
-
-            <div class="admin-section">
-
-
-                <div class="admin-section-header">
-
+                <div class="categoria-lista-topo">
 
                     <div>
 
-                        <h3>
+                        <div class="categoria-breadcrumb">
 
-                            <i class="fa-solid fa-list"></i>
+                            <a href="../index.php">
+                                Painel
+                            </a>
 
-                            Categorias cadastradas
+                            <span>›</span>
 
-                        </h3>
+                            <span>
+                                Categorias
+                            </span>
+
+                        </div>
+
+
+                        <h2>
+                            Categorias
+                        </h2>
 
 
                         <p>
-
-                            <?= count($categorias) ?>
-
-                            categoria(s) cadastrada(s).
-
+                            Organize os tipos de lugares disponíveis no ArTour.
                         </p>
 
                     </div>
 
 
-                    <a href="cadastro.php" class="btn">
+                    <a
+                        href="cadastro.php"
+                        class="categoria-btn-nova"
+                    >
 
                         <i class="fa-solid fa-plus"></i>
 
-                        Nova categoria
+                        Adicionar categoria
 
                     </a>
-
 
                 </div>
 
 
 
-                <table>
+                <!-- =============================================
+                     LISTAGEM
+                ============================================== -->
+
+                <?php if (empty($categorias)): ?>
+
+                    <div class="categoria-vazia">
+
+                        <h3>
+                            Nenhuma categoria cadastrada
+                        </h3>
+
+                        <p>
+                            Comece adicionando uma categoria para organizar os locais.
+                        </p>
+
+                        <a
+                            href="cadastro.php"
+                            class="categoria-vazia-link"
+                        >
+                            Adicionar primeira categoria
+                        </a>
+
+                    </div>
 
 
-                    <thead>
-
-                        <tr>
-
-                            <th>ID</th>
-
-                            <th>Nome</th>
-
-                            <th>Descrição</th>
-
-                            <th>Ações</th>
-
-                        </tr>
-
-                    </thead>
+                <?php else: ?>
 
 
-
-                    <tbody>
-
-
-                    <?php if (empty($categorias)): ?>
-
-
-                        <tr>
-
-                            <td colspan="4" class="text-center">
-
-                                <i class="fa-solid fa-folder-open"></i>
-
-                                Nenhuma categoria cadastrada.
-
-                            </td>
-
-                        </tr>
-
-
-                    <?php else: ?>
-
+                    <div class="categoria-grid">
 
                         <?php foreach ($categorias as $categoria): ?>
 
-
-                            <tr>
-
-
-                                <td>
-
-                                    <?= $categoria['id_categoria'] ?>
-
-                                </td>
+                            <article class="categoria-card">
 
 
-                                <td>
+                                <div class="categoria-card-topo">
 
-                                    <?= htmlspecialchars(
-                                        $categoria['nome']
-                                    ) ?>
+                                    <span class="categoria-numero">
 
-                                </td>
+                                        #<?= (int) $categoria['id_categoria'] ?>
 
+                                    </span>
 
-                                <td>
-
-                                    <?= htmlspecialchars(
-                                        $categoria['descricao']
-                                    ) ?>
-
-                                </td>
+                                </div>
 
 
-                                <td>
+                                <div class="categoria-card-conteudo">
 
+                                    <h3>
+
+                                        <?= htmlspecialchars(
+                                            $categoria['nome']
+                                        ) ?>
+
+                                    </h3>
+
+
+                                    <p>
+
+                                        <?= htmlspecialchars(
+                                            $categoria['descricao']
+                                            ?? 'Sem descrição.'
+                                        ) ?>
+
+                                    </p>
+
+                                </div>
+
+
+                                <div class="categoria-card-footer">
 
                                     <a
-                                        href="editar.php?id=<?= $categoria['id_categoria'] ?>"
-                                        class="btn btn-secondary"
+                                        href="editar.php?id=<?= (int) $categoria['id_categoria'] ?>"
+                                        class="categoria-editar"
                                     >
 
                                         <i class="fa-solid fa-pen"></i>
@@ -345,8 +379,8 @@ $categorias = $categoriaController->listar();
 
 
                                     <a
-                                        href="excluir.php?id=<?= $categoria['id_categoria'] ?>"
-                                        class="btn btn-danger"
+                                        href="excluir.php?id=<?= (int) $categoria['id_categoria'] ?>"
+                                        class="categoria-excluir"
                                         onclick="return confirm('Tem certeza que deseja excluir esta categoria?');"
                                     >
 
@@ -356,38 +390,32 @@ $categorias = $categoriaController->listar();
 
                                     </a>
 
+                                </div>
 
-                                </td>
 
-
-                            </tr>
-
+                            </article>
 
                         <?php endforeach; ?>
 
-
-                    <?php endif; ?>
-
-
-                    </tbody>
+                    </div>
 
 
-                </table>
+                <?php endif; ?>
+
+
+                <a
+                    href="../index.php"
+                    class="categoria-voltar"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Voltar para o painel
+
+                </a>
 
 
             </div>
-
-
-
-            <!-- VOLTAR -->
-
-            <a href="../index.php">
-
-                <i class="fa-solid fa-arrow-left"></i>
-
-                Voltar para o painel
-
-            </a>
 
 
         </section>
@@ -397,7 +425,6 @@ $categorias = $categoriaController->listar();
 
 
 </div>
-
 
 </body>
 

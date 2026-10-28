@@ -1,5 +1,5 @@
 /* ================================
-   Tour Local
+   ArTour
    CSS GLOBAL
 ================================ */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -287,3 +287,14 @@ tr:hover td {
         text-align: center;
     }
 }
+
+/* ArTour theme tokens — visual consistency */
+:root {
+    --artour-petrol: #073F4D;
+    --artour-turquoise: #39C6C3;
+    --artour-ink: #092F39;
+    --artour-muted: #5D7278;
+    --artour-border: #DCE9E7;
+    --artour-soft: #F0F7F6;
+}
+:focus-visible { outline: 3px solid rgba(57,198,195,.65); outline-offset: 3px; }

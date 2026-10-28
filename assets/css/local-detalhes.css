@@ -1,0 +1,411 @@
+/* =========================================================
+   DETALHES DO LOCAL - ARTOUR
+   ========================================================= */
+
+.local-detalhes-page {
+    min-height: 70vh;
+    padding: 35px 0 70px;
+    background: #f7f9fa;
+}
+
+
+/* =========================================================
+   VOLTAR
+   ========================================================= */
+
+.local-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 25px;
+    color: #17677d;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.local-voltar i {
+    font-size: 11px;
+}
+
+.local-voltar:hover {
+    color: #12576a;
+}
+
+
+/* =========================================================
+   CONTAINER PRINCIPAL
+   ========================================================= */
+
+.local-detalhes {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr);
+    gap: 45px;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e6edef;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(20, 55, 65, 0.04);
+}
+
+
+/* =========================================================
+   GALERIA
+   ========================================================= */
+
+.local-galeria {
+    min-width: 0;
+}
+
+.local-foto-principal {
+    width: 100%;
+    height: 470px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #edf3f5;
+}
+
+.local-foto-principal img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.local-sem-foto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #91a5ab;
+}
+
+.local-sem-foto i {
+    font-size: 50px;
+}
+
+.local-sem-foto span {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MINIATURAS
+   ========================================================= */
+
+.local-miniaturas {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.local-miniatura {
+    height: 70px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #edf3f5;
+}
+
+.local-miniatura img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES
+   ========================================================= */
+
+.local-informacoes {
+    padding: 10px 5px;
+}
+
+.local-categoria {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 20px;
+    background: #edf5f7;
+    color: #17677d;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.local-informacoes h1 {
+    margin: 14px 0 8px;
+    color: #29434c;
+    font-size: 31px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.local-cidade {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 28px;
+    color: #7d9197;
+    font-size: 12px;
+}
+
+.local-cidade i {
+    color: #17677d;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   DESCRIÇÃO
+   ========================================================= */
+
+.local-descricao {
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e9eff0;
+}
+
+.local-descricao h2,
+.local-localizacao h2 {
+    margin: 0 0 10px;
+    color: #29434c;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.local-descricao p {
+    margin: 0;
+    color: #71858b;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   DADOS
+   ========================================================= */
+
+.local-dados {
+    display: flex;
+    flex-direction: column;
+}
+
+.local-dado {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px 0;
+    border-bottom: 1px solid #edf1f2;
+}
+
+.local-dado-icone {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background: #edf5f7;
+    color: #17677d;
+}
+
+.local-dado-icone i {
+    font-size: 13px;
+}
+
+.local-dado > div:last-child {
+    min-width: 0;
+}
+
+.local-dado span {
+    display: block;
+    margin-bottom: 3px;
+    color: #8b9ba0;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.local-dado strong {
+    display: block;
+    color: #405861;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+/* =========================================================
+   LOCALIZAÇÃO
+   ========================================================= */
+
+.local-localizacao {
+    padding-top: 26px;
+}
+
+.local-localizacao-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 13px;
+}
+
+.local-localizacao-header span {
+    display: block;
+    margin-bottom: 5px;
+    color: #8b9ba0;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.local-localizacao-header h2 {
+    margin: 0;
+    color: #29434c;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.local-mapa-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 35px;
+    padding: 0 11px;
+    border: 1px solid #dcebed;
+    border-radius: 6px;
+    background: #f3f8f9;
+    color: #17677d;
+    font-size: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.local-mapa-link:hover {
+    background: #17677d;
+    color: #ffffff;
+}
+
+.local-mapa-link i {
+    font-size: 9px;
+}
+
+#map {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    border: 1px solid #e1eaec;
+    border-radius: 9px;
+    background: #edf3f5;
+}
+
+.local-mapa-attribution {
+    margin-top: 5px;
+    color: #99a7ab;
+    font-size: 8px;
+    text-align: right;
+}/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .local-detalhes {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .local-foto-principal {
+        height: 420px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .local-localizacao-header {
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.local-mapa-link {
+    width: 100%;
+}
+
+#map {
+    height: 230px;
+}
+    .local-detalhes-page {
+        padding: 25px 0 50px;
+    }
+
+    .local-detalhes {
+        padding: 18px;
+        border-radius: 9px;
+    }
+
+    .local-foto-principal {
+        height: 300px;
+    }
+
+    .local-informacoes h1 {
+        font-size: 25px;
+    }
+
+    .local-miniaturas {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .local-miniatura {
+        height: 60px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .local-foto-principal {
+        height: 240px;
+    }
+
+    .local-miniaturas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .local-informacoes h1 {
+        font-size: 22px;
+    }
+
+    .local-detalhe {
+        gap: 10px;
+    }
+
+    .local-mapa-link {
+        width: 100%;
+    }
+
+}
+
+/* ArTour theme tokens — visual consistency */
+:root {
+    --artour-petrol: #073F4D;
+    --artour-turquoise: #39C6C3;
+    --artour-ink: #092F39;
+    --artour-muted: #5D7278;
+    --artour-border: #DCE9E7;
+    --artour-soft: #F0F7F6;
+}
+:focus-visible { outline: 3px solid rgba(57,198,195,.65); outline-offset: 3px; }

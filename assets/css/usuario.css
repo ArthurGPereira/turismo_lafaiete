@@ -1,0 +1,470 @@
+/* =========================================================
+   ArTour
+   PÁGINA DE USUÁRIOS
+========================================================= */
+
+
+/* =========================================================
+   SEÇÃO
+========================================================= */
+
+.usuario-section {
+    width: 100%;
+}
+
+
+/* =========================================================
+   BOTÃO NOVO USUÁRIO
+========================================================= */
+
+.usuario-btn-novo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-height: 40px;
+    padding: 9px 15px;
+
+    background: #17677d;
+    border: 1px solid #17677d;
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    box-shadow: 0 3px 8px rgba(23, 103, 125, 0.15);
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.usuario-btn-novo:hover {
+    background: #12576a;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 12px rgba(23, 103, 125, 0.20);
+}
+
+
+/* =========================================================
+   ALERTA
+========================================================= */
+
+.usuario-alert {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 20px;
+    padding: 12px 14px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.usuario-alert-error {
+    background: #fff3f3;
+    border: 1px solid #f0d8d8;
+
+    color: #b44e4e;
+}
+
+
+/* =========================================================
+   TABELA
+========================================================= */
+
+.usuario-tabela-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid #e5ebed;
+    border-radius: 9px;
+}
+
+.usuario-tabela {
+    width: 100%;
+
+    min-width: 850px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    table-layout: fixed;
+}
+
+
+/* =========================================================
+   LARGURA DAS COLUNAS
+========================================================= */
+
+.usuario-tabela .col-id {
+    width: 8%;
+}
+
+.usuario-tabela .col-nome {
+    width: 22%;
+}
+
+.usuario-tabela .col-email {
+    width: 28%;
+}
+
+.usuario-tabela .col-tipo {
+    width: 19%;
+}
+
+.usuario-tabela .col-acoes {
+    width: 23%;
+}
+
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.usuario-tabela thead th {
+    padding: 13px 15px;
+
+    background: #f4f7f8;
+
+    border-bottom: 1px solid #e0e8ea;
+
+    color: #62757d;
+
+    text-align: left;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CÉLULAS
+========================================================= */
+
+.usuario-tabela tbody td {
+    height: 76px;
+
+    padding: 13px 15px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #edf1f2;
+
+    color: #40545c;
+
+    font-size: 12px;
+
+    vertical-align: middle;
+
+    overflow: hidden;
+}
+
+.usuario-tabela tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.usuario-tabela tbody tr {
+    transition: background 0.15s ease;
+}
+
+.usuario-tabela tbody tr:hover td {
+    background: #fafcfc;
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+.usuario-id {
+    color: #84969c;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   NOME
+========================================================= */
+
+.usuario-nome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.usuario-avatar {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #edf4f6;
+
+    color: #17677d;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.usuario-nome span {
+    color: #29434c;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   E-MAIL
+========================================================= */
+
+.usuario-email {
+    display: block;
+
+    color: #62777f;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   TIPO
+========================================================= */
+
+.usuario-tipo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.usuario-tipo i {
+    font-size: 9px;
+}
+
+.usuario-tipo-admin {
+    background: #fff5dc;
+
+    color: #9b711d;
+}
+
+.usuario-tipo-normal {
+    background: #edf5f7;
+
+    color: #17677d;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.usuario-acoes {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    white-space: nowrap;
+}
+
+.usuario-acoes a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    min-height: 32px;
+
+    padding: 7px 10px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* =========================================================
+   EDITAR
+========================================================= */
+
+.usuario-editar {
+    background: #eef5f7;
+    border: 1px solid #dcebed;
+
+    color: #17677d;
+}
+
+.usuario-editar:hover {
+    background: #e3eff2;
+
+    color: #12576a;
+}
+
+
+/* =========================================================
+   EXCLUIR
+========================================================= */
+
+.usuario-excluir {
+    background: #fff2f2;
+    border: 1px solid #f0d8d8;
+
+    color: #bd5555;
+}
+
+.usuario-excluir:hover {
+    background: #fbe4e4;
+
+    color: #a84444;
+}
+
+
+/* =========================================================
+   ESTADO VAZIO
+========================================================= */
+
+.usuario-vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 250px;
+
+    padding: 35px;
+
+    text-align: center;
+}
+
+.usuario-vazio > i {
+    margin-bottom: 12px;
+
+    color: #9aadb3;
+
+    font-size: 30px;
+}
+
+.usuario-vazio h3 {
+    margin-bottom: 6px;
+
+    color: #29434c;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.usuario-vazio p {
+    color: #84949a;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .usuario-section {
+        padding: 20px;
+    }
+
+    .usuario-section .admin-section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .usuario-btn-novo {
+        width: auto;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .usuario-section {
+        padding: 17px;
+    }
+
+    .usuario-btn-novo {
+        width: 100%;
+    }
+
+    .usuario-tabela {
+        min-width: 850px;
+    }
+
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+.usuario-btn-novo:focus-visible,
+.usuario-acoes a:focus-visible {
+    outline: 3px solid rgba(217, 164, 65, 0.35);
+    outline-offset: 2px;
+}
+
+/* ArTour theme tokens — visual consistency */
+:root {
+    --artour-petrol: #073F4D;
+    --artour-turquoise: #39C6C3;
+    --artour-ink: #092F39;
+    --artour-muted: #5D7278;
+    --artour-border: #DCE9E7;
+    --artour-soft: #F0F7F6;
+}
+:focus-visible { outline: 3px solid rgba(57,198,195,.65); outline-offset: 3px; }

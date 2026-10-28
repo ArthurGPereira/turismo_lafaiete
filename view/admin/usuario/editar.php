@@ -58,7 +58,7 @@ if (isset($_POST['editar_usuario'])) {
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Editar Usuário - Tour Local</title>
+    <title>Editar Usuário - ArTour</title>
 
 </head>
 
@@ -66,7 +66,7 @@ if (isset($_POST['editar_usuario'])) {
 
     <header>
 
-        <h1>Tour Local</h1>
+        <h1>ArTour</h1>
 
         <p>Painel administrativo</p>
 

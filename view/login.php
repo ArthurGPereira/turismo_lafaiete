@@ -22,9 +22,13 @@ if (isset($_POST['entrar'])) {
         $_SESSION['tipo_usuario'] = $usuario['tipo'];
 
         if ($usuario['tipo'] === 'administrador') {
+
             header('Location: admin/index.php');
+
         } else {
+
             header('Location: index.php');
+
         }
 
         exit;
@@ -32,6 +36,7 @@ if (isset($_POST['entrar'])) {
     } else {
 
         $mensagem = 'E-mail ou senha incorretos.';
+
     }
 }
 
@@ -49,9 +54,12 @@ if (isset($_POST['entrar'])) {
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Login - Tour Local</title>
+    <title>Login - ArTour</title>
 
-    <link rel="stylesheet" href="assets/css/login.css">
+    <link
+        rel="stylesheet"
+        href="../assets/css/login.css"
+    >
 
 </head>
 
@@ -63,7 +71,13 @@ if (isset($_POST['entrar'])) {
 
             <div class="login-header">
 
-                <h1>Tour Local</h1>
+                <h1>
+                    ArTour
+                </h1>
+
+                <span class="login-slogan">
+                    Assistente Regional de Turismo
+                </span>
 
                 <p>
                     Entre na sua conta
@@ -83,7 +97,11 @@ if (isset($_POST['entrar'])) {
             <?php endif; ?>
 
 
-            <form method="POST" class="login-form" autocomplete="off">
+            <form
+                method="POST"
+                class="login-form"
+                autocomplete="off"
+            >
 
                 <div class="login-group">
 
@@ -134,7 +152,12 @@ if (isset($_POST['entrar'])) {
 
             <div class="login-footer">
 
-                <a href="index.php">
+                <p>
+                    Ainda não tem uma conta?
+                    <a href="cadastro_usuario.php">Cadastre-se</a>
+                </p>
+
+                <a href="../index.php">
                     Voltar para o início
                 </a>
 

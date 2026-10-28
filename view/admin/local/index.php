@@ -24,31 +24,19 @@ $locais = $localController->listar();
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Gerenciar Locais - ArTour</title>
 
-    <title>Gerenciar Locais - Tour Local</title>
-
-    <link
-        rel="stylesheet"
-        href="../../../assets/css/global.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../../assets/css/admin.css"
-    >
+    <link rel="stylesheet" href="../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../assets/css/admin.css">
+    <link rel="stylesheet" href="../../../assets/css/local.css?v=99">
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
-
 </head>
 
 <body>
@@ -62,10 +50,10 @@ $locais = $localController->listar();
 
         <div class="admin-brand">
 
-            <h1>Tour Local</h1>
+            <h1>ArTour</h1>
 
             <span>
-                Painel administrativo
+                Assistente Regional de Turismo
             </span>
 
         </div>
@@ -136,6 +124,17 @@ $locais = $localController->listar();
             <div class="admin-menu-title">
                 Sistema
             </div>
+
+
+            <a href="/Turismo-Lafa/index.php">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Ver página inicial
+                </span>
+
+            </a>
 
 
             <a href="../../perfil.php">
@@ -227,7 +226,7 @@ $locais = $localController->listar();
 
                 <p>
                     Cadastre e gerencie os pontos turísticos,
-                    restaurantes e espaços disponíveis no Tour Local.
+                    restaurantes e espaços disponíveis no ArTour.
                 </p>
 
             </div>
@@ -280,7 +279,7 @@ $locais = $localController->listar();
                 <?php if (!empty($locais)): ?>
 
 
-                    <table>
+                    <table class="locais-tabela">
 
                         <thead>
 
@@ -347,7 +346,7 @@ $locais = $localController->listar();
                                 </td>
 
 
-                                <td>
+                                <td class="local-endereco">
 
                                     <?= htmlspecialchars(
                                         $local['endereco']
@@ -360,7 +359,7 @@ $locais = $localController->listar();
 
 
                                     <a
-                                        href="editar.php?id=<?= $local['id_local'] ?>"
+                                        href="editar.php?id=<?= (int) $local['id_local'] ?>"
                                         class="btn btn-secondary"
                                     >
 
@@ -372,7 +371,7 @@ $locais = $localController->listar();
 
 
                                     <a
-                                        href="../foto/index.php?id_local=<?= $local['id_local'] ?>"
+                                        href="../foto/index.php?id_local=<?= (int) $local['id_local'] ?>"
                                         class="btn btn-secondary"
                                     >
 
@@ -384,7 +383,7 @@ $locais = $localController->listar();
 
 
                                     <a
-                                        href="excluir.php?id=<?= $local['id_local'] ?>"
+                                        href="excluir.php?id=<?= (int) $local['id_local'] ?>"
                                         class="btn btn-danger"
                                         onclick="return confirm('Tem certeza que deseja excluir este local?');"
                                     >

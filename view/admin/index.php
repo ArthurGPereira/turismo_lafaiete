@@ -32,6 +32,9 @@ $totalUsuarios = count($usuarios);
 $totalCategorias = count($categorias);
 $totalCidades = count($cidades);
 
+$locaisRecentes = array_slice($locais, 0, 6);
+$cidadesRecentes = array_slice($cidades, 0, 5);
+
 ?>
 
 <!DOCTYPE html>
@@ -41,15 +44,34 @@ $totalCidades = count($cidades);
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Painel Administrativo - Tour Local</title>
+    <title>Dashboard - ArTour</title>
 
-    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link
+        rel="icon"
+        type="image/png"
+        href="/Turismo-Lafa/assets/img/artour-simbolo.png"
+    >
 
-    <link rel="stylesheet" href="../../assets/css/admin.css">
+    <link
+        rel="stylesheet"
+        href="../../assets/css/global.css?v=3"
+    >
 
-    <!-- Ícones -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/admin.css?v=3"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/dashboard.css?v=1"
+    >
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -59,35 +81,43 @@ $totalCidades = count($cidades);
 
 <body>
 
-<div class="admin-page">
+<div class="dashboard-page">
 
 
-    <!-- SIDEBAR -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-    <aside class="admin-sidebar">
+    <aside class="dashboard-sidebar">
 
-        <div class="admin-brand">
 
-            <h1>Tour Local</h1>
-
-            <span>Painel administrativo</span>
-
+        <div class="dashboard-brand">
+            <img
+                    src="/Turismo-Lafa/assets/img/artour-logo.png"
+                    alt="ArTour - Assistente Regional de Turismo"
+                >
+            </a>
         </div>
 
 
-        <nav class="admin-menu">
+        <nav class="dashboard-menu">
 
 
-            <div class="admin-menu-title">
+            <span class="dashboard-menu-title">
                 Gerenciamento
-            </div>
+            </span>
 
 
-            <a href="index.php" class="active">
+            <a
+                href="index.php"
+                class="active"
+            >
 
                 <i class="fa-solid fa-chart-line"></i>
 
-                <span>Dashboard</span>
+                <span>
+                    Dashboard
+                </span>
 
             </a>
 
@@ -96,7 +126,9 @@ $totalCidades = count($cidades);
 
                 <i class="fa-solid fa-location-dot"></i>
 
-                <span>Locais</span>
+                <span>
+                    Locais
+                </span>
 
             </a>
 
@@ -105,7 +137,9 @@ $totalCidades = count($cidades);
 
                 <i class="fa-solid fa-layer-group"></i>
 
-                <span>Categorias</span>
+                <span>
+                    Categorias
+                </span>
 
             </a>
 
@@ -114,7 +148,9 @@ $totalCidades = count($cidades);
 
                 <i class="fa-solid fa-city"></i>
 
-                <span>Cidades</span>
+                <span>
+                    Cidades
+                </span>
 
             </a>
 
@@ -123,21 +159,36 @@ $totalCidades = count($cidades);
 
                 <i class="fa-solid fa-users"></i>
 
-                <span>Usuários</span>
+                <span>
+                    Usuários
+                </span>
 
             </a>
 
 
-            <div class="admin-menu-title">
+            <span class="dashboard-menu-title dashboard-menu-title-system">
                 Sistema
-            </div>
+            </span>
+
+
+            <a href="/Turismo-Lafa/index.php">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Ver página inicial
+                </span>
+
+            </a>
 
 
             <a href="../perfil.php">
 
                 <i class="fa-solid fa-user"></i>
 
-                <span>Meu perfil</span>
+                <span>
+                    Meu perfil
+                </span>
 
             </a>
 
@@ -145,329 +196,531 @@ $totalCidades = count($cidades);
         </nav>
 
 
-        <div class="admin-sidebar-footer">
+        <div class="dashboard-sidebar-footer">
 
             <a href="../logout.php">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
-                <span>Sair da conta</span>
+                <span>
+                    Sair da conta
+                </span>
 
             </a>
 
         </div>
 
+
     </aside>
 
 
 
-    <!-- CONTEÚDO -->
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
 
-    <main class="admin-content">
+    <main class="dashboard-content">
 
 
         <!-- CABEÇALHO -->
 
-        <header class="admin-header">
+        <header class="dashboard-header">
+
+            <div class="dashboard-header-title">
+
+                <span>
+                    PAINEL ADMINISTRATIVO
+                </span>
+
+                <h1>
+                    Visão geral
+                </h1>
+
+            </div>
 
 
-            <h2>Dashboard</h2>
+            <div class="dashboard-user">
 
-
-            <div class="admin-user">
-
-
-                <div class="admin-user-icon">
+                <div class="dashboard-user-avatar">
 
                     <?= strtoupper(
-                        substr($_SESSION['nome_usuario'], 0, 1)
+                        substr(
+                            $_SESSION['nome_usuario'],
+                            0,
+                            1
+                        )
                     ) ?>
 
                 </div>
 
 
-                <span>
+                <div>
 
-                    <?= htmlspecialchars($_SESSION['nome_usuario']) ?>
+                    <strong>
+                        <?= htmlspecialchars(
+                            $_SESSION['nome_usuario']
+                        ) ?>
+                    </strong>
 
-                </span>
+                    <span>
+                        Administrador
+                    </span>
 
+                </div>
 
             </div>
-
 
         </header>
 
 
 
-        <!-- PRINCIPAL -->
+        <!-- =================================================
+             PRINCIPAL
+        ================================================== -->
 
-        <section class="admin-main">
-
-
-            <!-- BOAS-VINDAS -->
-
-            <div class="admin-welcome">
-
-                <h1>
-
-                    Olá, <?= htmlspecialchars($_SESSION['nome_usuario']) ?>!
-
-                </h1>
+        <section class="dashboard-main">
 
 
-                <p>
+            <!-- =================================================
+                 BOAS-VINDAS
+            ================================================== -->
 
-                    Aqui você pode acompanhar e administrar o Tour Local.
+            <section class="dashboard-hero">
 
-                </p>
+                <div class="dashboard-hero-content">
 
-            </div>
+                    <span>
+                        ARTOUR
+                    </span>
+
+                    <h2>
+                        Olá,
+                        <?= htmlspecialchars(
+                            $_SESSION['nome_usuario']
+                        ) ?>.
+                    </h2>
+
+                    <p>
+                        Gerencie os lugares, cidades e informações
+                        que fazem parte da experiência turística
+                        do ArTour.
+                    </p>
+
+                </div>
+
+
+                <div class="dashboard-hero-decoration">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                </div>
+
+            </section>
 
 
 
-            <!-- ESTATÍSTICAS -->
+            <!-- =================================================
+                 ESTATÍSTICAS
+            ================================================== -->
 
-            <div class="admin-stats">
+            <section class="dashboard-stats">
 
 
-                <div class="admin-stat">
+                <a
+                    href="local/index.php"
+                    class="dashboard-stat"
+                >
 
-                    <div class="admin-stat-label">
+                    <div class="dashboard-stat-icon">
 
                         <i class="fa-solid fa-location-dot"></i>
 
-                        Locais cadastrados
+                    </div>
+
+                    <div class="dashboard-stat-info">
+
+                        <span>
+                            Locais cadastrados
+                        </span>
+
+                        <strong>
+                            <?= $totalLocais ?>
+                        </strong>
 
                     </div>
 
+                    <i class="fa-solid fa-arrow-up-right-from-square dashboard-stat-arrow"></i>
 
-                    <div class="admin-stat-number">
-
-                        <?= $totalLocais ?>
-
-                    </div>
-
-                </div>
+                </a>
 
 
+                <a
+                    href="cidade/index.php"
+                    class="dashboard-stat"
+                >
 
-                <div class="admin-stat">
-
-                    <div class="admin-stat-label">
-
-                        <i class="fa-solid fa-users"></i>
-
-                        Usuários
-
-                    </div>
-
-
-                    <div class="admin-stat-number">
-
-                        <?= $totalUsuarios ?>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="admin-stat">
-
-                    <div class="admin-stat-label">
-
-                        <i class="fa-solid fa-layer-group"></i>
-
-                        Categorias
-
-                    </div>
-
-
-                    <div class="admin-stat-number">
-
-                        <?= $totalCategorias ?>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="admin-stat">
-
-                    <div class="admin-stat-label">
+                    <div class="dashboard-stat-icon">
 
                         <i class="fa-solid fa-city"></i>
 
-                        Cidades
+                    </div>
+
+                    <div class="dashboard-stat-info">
+
+                        <span>
+                            Cidades
+                        </span>
+
+                        <strong>
+                            <?= $totalCidades ?>
+                        </strong>
 
                     </div>
 
+                    <i class="fa-solid fa-arrow-up-right-from-square dashboard-stat-arrow"></i>
 
-                    <div class="admin-stat-number">
+                </a>
 
-                        <?= $totalCidades ?>
+
+                <a
+                    href="categoria/index.php"
+                    class="dashboard-stat"
+                >
+
+                    <div class="dashboard-stat-icon">
+
+                        <i class="fa-solid fa-layer-group"></i>
 
                     </div>
 
-                </div>
+                    <div class="dashboard-stat-info">
+
+                        <span>
+                            Categorias
+                        </span>
+
+                        <strong>
+                            <?= $totalCategorias ?>
+                        </strong>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square dashboard-stat-arrow"></i>
+
+                </a>
 
 
-            </div>
+                <a
+                    href="usuario/index.php"
+                    class="dashboard-stat"
+                >
+
+                    <div class="dashboard-stat-icon">
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </div>
+
+                    <div class="dashboard-stat-info">
+
+                        <span>
+                            Usuários
+                        </span>
+
+                        <strong>
+                            <?= $totalUsuarios ?>
+                        </strong>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square dashboard-stat-arrow"></i>
+
+                </a>
+
+
+            </section>
 
 
 
-            <!-- LOCAIS -->
+            <!-- =================================================
+                 LOCAIS RECENTES
+            ================================================== -->
 
-            <div class="admin-section">
+            <section class="dashboard-section">
 
 
-                <div class="admin-section-header">
-
+                <div class="dashboard-section-heading">
 
                     <div>
 
-                        <h3>
+                        <span>
+                            CONTEÚDO
+                        </span>
 
-                            <i class="fa-solid fa-location-dot"></i>
-
-                            Locais cadastrados
-
-                        </h3>
-
+                        <h2>
+                            Lugares cadastrados
+                        </h2>
 
                         <p>
-
-                            Últimos locais registrados no sistema.
-
+                            Os locais disponíveis atualmente no ArTour.
                         </p>
 
                     </div>
 
 
-                    <a href="local/cadastro.php" class="btn">
-
-                        <i class="fa-solid fa-plus"></i>
-
-                        Novo local
-
+                    <a
+                        href="local/index.php"
+                        class="dashboard-section-link"
+                    >
+                        Ver todos
+                        <i class="fa-solid fa-arrow-right"></i>
                     </a>
-
 
                 </div>
 
 
 
-                <table>
+                <?php if (!empty($locaisRecentes)): ?>
 
 
-                    <thead>
-
-                        <tr>
-
-                            <th>Nome</th>
-
-                            <th>Categoria</th>
-
-                            <th>Cidade</th>
-
-                        </tr>
-
-                    </thead>
+                    <div class="dashboard-place-grid">
 
 
-
-                    <tbody>
-
-
-                        <?php if (empty($locais)): ?>
+                        <?php foreach ($locaisRecentes as $local): ?>
 
 
-                            <tr>
-
-                                <td colspan="3" class="text-center">
-
-                                    Nenhum local cadastrado.
-
-                                </td>
-
-                            </tr>
+                            <article class="dashboard-place-card">
 
 
-                        <?php else: ?>
+                                <div class="dashboard-place-image">
 
 
-                            <?php foreach (array_slice($locais, 0, 5) as $local): ?>
+                                    <?php if (!empty($local['foto'])): ?>
+
+                                        <img
+                                            src="/Turismo-Lafa/<?= htmlspecialchars($local['foto']) ?>"
+                                            alt="<?= htmlspecialchars($local['nome']) ?>"
+                                        >
+
+                                    <?php else: ?>
+
+                                        <div class="dashboard-place-placeholder">
+
+                                            <i class="fa-solid fa-mountain-sun"></i>
+
+                                        </div>
+
+                                    <?php endif; ?>
 
 
-                                <tr>
+                                    <span class="dashboard-place-category">
+
+                                        <?= htmlspecialchars(
+                                            $local['categoria']
+                                        ) ?>
+
+                                    </span>
 
 
-                                    <td>
-
-                                        <?= htmlspecialchars($local['nome']) ?>
-
-                                    </td>
+                                </div>
 
 
-                                    <td>
-
-                                        <?= htmlspecialchars($local['categoria']) ?>
-
-                                    </td>
+                                <div class="dashboard-place-content">
 
 
-                                    <td>
+                                    <h3>
 
-                                        <?= htmlspecialchars($local['cidade']) ?>
+                                        <?= htmlspecialchars(
+                                            $local['nome']
+                                        ) ?>
 
-                                    </td>
+                                    </h3>
 
 
-                                </tr>
+                                    <span class="dashboard-place-city">
+
+                                        <i class="fa-solid fa-location-dot"></i>
+
+                                        <?= htmlspecialchars(
+                                            $local['cidade']
+                                        ) ?>
+
+                                    </span>
+
+
+                                    <p>
+
+                                        <?= htmlspecialchars(
+                                            $local['descricao'] ??
+                                            'Conheça este local.'
+                                        ) ?>
+
+                                    </p>
+
+
+                                    <a
+                                        href="local/editar.php?id=<?= (int) $local['id_local'] ?>"
+                                    >
+
+                                        Gerenciar local
+
+                                        <i class="fa-solid fa-arrow-right"></i>
+
+                                    </a>
+
+
+                                </div>
+
+
+                            </article>
+
+
+                        <?php endforeach; ?>
+
+
+                    </div>
+
+
+                <?php else: ?>
+
+
+                    <div class="dashboard-empty">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <h3>
+                            Nenhum local cadastrado
+                        </h3>
+
+                        <p>
+                            Comece adicionando o primeiro local ao ArTour.
+                        </p>
+
+                        <a href="local/cadastro.php">
+                            Cadastrar local
+                        </a>
+
+                    </div>
+
+
+                <?php endif; ?>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PARTE INFERIOR
+            ================================================== -->
+
+            <section class="dashboard-bottom">
+
+
+                <!-- CIDADES -->
+
+                <div class="dashboard-panel">
+
+
+                    <div class="dashboard-panel-heading">
+
+                        <div>
+
+                            <span>
+                                DESTINOS
+                            </span>
+
+                            <h2>
+                                Cidades
+                            </h2>
+
+                        </div>
+
+
+                        <a href="cidade/index.php">
+
+                            Ver todas
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="dashboard-city-list">
+
+
+                        <?php if (!empty($cidadesRecentes)): ?>
+
+
+                            <?php foreach ($cidadesRecentes as $cidade): ?>
+
+
+                                <a
+                                    href="cidade/editar.php?id=<?= (int) $cidade['id_cidade'] ?>"
+                                    class="dashboard-city-item"
+                                >
+
+
+                                    <div class="dashboard-city-image">
+
+
+                                        <?php if (!empty($cidade['imagem'])): ?>
+
+                                            <img
+                                                src="/Turismo-Lafa/<?= htmlspecialchars($cidade['imagem']) ?>"
+                                                alt="<?= htmlspecialchars($cidade['nome']) ?>"
+                                            >
+
+                                        <?php else: ?>
+
+                                            <i class="fa-solid fa-city"></i>
+
+                                        <?php endif; ?>
+
+
+                                    </div>
+
+
+                                    <div class="dashboard-city-info">
+
+                                        <strong>
+
+                                            <?= htmlspecialchars(
+                                                $cidade['nome']
+                                            ) ?>
+
+                                        </strong>
+
+                                        <span>
+
+                                            <?= htmlspecialchars(
+                                                $cidade['estado']
+                                            ) ?>
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <i class="fa-solid fa-chevron-right"></i>
+
+
+                                </a>
 
 
                             <?php endforeach; ?>
 
 
+                        <?php else: ?>
+
+
+                            <p class="dashboard-panel-empty">
+                                Nenhuma cidade cadastrada.
+                            </p>
+
+
                         <?php endif; ?>
 
-
-                    </tbody>
-
-
-                </table>
-
-
-            </div>
-
-
-
-            <!-- ACESSOS RÁPIDOS -->
-
-            <div class="admin-section">
-
-
-                <div class="admin-section-header">
-
-
-                    <div>
-
-                        <h3>
-
-                            <i class="fa-solid fa-bolt"></i>
-
-                            Acessos rápidos
-
-                        </h3>
-
-
-                        <p>
-
-                            Gerencie as principais informações do sistema.
-
-                        </p>
 
                     </div>
 
@@ -476,49 +729,118 @@ $totalCidades = count($cidades);
 
 
 
-                <div class="admin-quick-actions">
+                <!-- ACESSOS -->
+
+                <div class="dashboard-panel dashboard-actions-panel">
 
 
-                    <a href="local/index.php" class="btn">
+                    <div class="dashboard-panel-heading">
 
-                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
 
-                        Gerenciar locais
+                            <span>
+                                ATALHOS
+                            </span>
 
-                    </a>
+                            <h2>
+                                Acessos rápidos
+                            </h2>
 
+                        </div>
 
-                    <a href="categoria/index.php" class="btn btn-secondary">
-
-                        <i class="fa-solid fa-layer-group"></i>
-
-                        Categorias
-
-                    </a>
-
-
-                    <a href="cidade/index.php" class="btn btn-secondary">
-
-                        <i class="fa-solid fa-city"></i>
-
-                        Cidades
-
-                    </a>
+                    </div>
 
 
-                    <a href="usuario/index.php" class="btn btn-secondary">
+                    <div class="dashboard-actions">
 
-                        <i class="fa-solid fa-users"></i>
 
-                        Usuários
+                        <a
+                            href="local/cadastro.php"
+                            class="dashboard-action dashboard-action-main"
+                        >
 
-                    </a>
+                            <div>
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                            </div>
+
+                            <span>
+                                Cadastrar novo local
+                            </span>
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+
+                        <a
+                            href="cidade/cadastro.php"
+                            class="dashboard-action"
+                        >
+
+                            <div>
+
+                                <i class="fa-solid fa-city"></i>
+
+                            </div>
+
+                            <span>
+                                Cadastrar cidade
+                            </span>
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+
+                        <a
+                            href="categoria/cadastro.php"
+                            class="dashboard-action"
+                        >
+
+                            <div>
+
+                                <i class="fa-solid fa-layer-group"></i>
+
+                            </div>
+
+                            <span>
+                                Nova categoria
+                            </span>
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+
+                        <a
+                            href="usuario/cadastro.php"
+                            class="dashboard-action"
+                        >
+
+                            <div>
+
+                                <i class="fa-solid fa-user-plus"></i>
+
+                            </div>
+
+                            <span>
+                                Novo usuário
+                            </span>
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+
+                    </div>
 
 
                 </div>
 
 
-            </div>
+            </section>
 
 
         </section>
@@ -528,7 +850,6 @@ $totalCidades = count($cidades);
 
 
 </div>
-
 
 </body>
 

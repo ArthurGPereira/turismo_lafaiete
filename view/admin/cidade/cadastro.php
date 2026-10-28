@@ -101,33 +101,28 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Nova cidade - ArTour</title>
 
-    <title>Nova cidade - Tour Local</title>
+    <link rel="icon" type="image/png"
+          href="../../../assets/img/artour-simbolo.png">
 
-    <link
-        rel="stylesheet"
-        href="../../../assets/css/admin.css"
-    >
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link
-        rel="stylesheet"
-        href="../../../assets/css/cidade.css"
-    >
-
+    <link rel="stylesheet" href="../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../assets/css/admin.css">
+    <link rel="stylesheet" href="../../../assets/css/cidade.css?v=11">
+    <link rel="stylesheet" href="../../../assets/css/cidade-cadastro.css?v=1">
 </head>
 
 <body>
 
     <header>
 
-        <h1>Tour Local</h1>
+        <h1>ArTour</h1>
 
         <p>Painel administrativo</p>
 
@@ -157,7 +152,7 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
 
         <p>
             Cadastre uma nova cidade para começar a apresentar seus lugares,
-            atrações e experiências no Tour Local.
+            atrações e experiências no ArTour.
         </p>
 
         </div>

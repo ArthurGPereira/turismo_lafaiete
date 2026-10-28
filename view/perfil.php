@@ -112,7 +112,10 @@ if (isset($_POST['salvar_perfil'])) {
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Meu Perfil - Tour Local</title>
+    <title>Meu Perfil - ArTour</title>
+
+    <link rel="icon" type="image/png" href="../assets/img/artour-simbolo.png">
+    <link rel="stylesheet" href="../assets/css/perfil.css?v=1">
 
 </head>
 
@@ -120,7 +123,7 @@ if (isset($_POST['salvar_perfil'])) {
 
     <header>
 
-        <h1>Tour Local</h1>
+        <h1>ArTour</h1>
 
         <p>Meu Perfil</p>
 

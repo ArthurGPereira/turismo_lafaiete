@@ -16,31 +16,34 @@ require_once '../../../controller/CategoriaController.php';
 
 $categoriaController = new CategoriaController();
 
-if (!isset($_GET['id'])) {
-    header('Location: index.php');
-    exit;
-}
+$mensagem = '';
 
-$id = $_GET['id'];
+if (isset($_POST['cadastrar'])) {
 
-$categoria = $categoriaController->buscarPorId($id);
+    $nome = trim($_POST['nome']);
+    $descricao = trim($_POST['descricao']);
 
-if (!$categoria) {
-    die('Categoria não encontrada.');
-}
+    if ($nome === '') {
 
-if (isset($_POST['editar_categoria'])) {
+        $mensagem = 'Informe o nome da categoria.';
 
-    $dados = [
-        'id_categoria' => $_POST['id_categoria'],
-        'nome' => $_POST['nome'],
-        'descricao' => $_POST['descricao']
-    ];
+    } else {
 
-    $categoriaController->editar($dados);
+        $dados = [
+            'nome' => $nome,
+            'descricao' => $descricao
+        ];
 
-    header('Location: index.php');
-    exit;
+        if ($categoriaController->cadastrar($dados)) {
+
+            header('Location: index.php');
+            exit;
+
+        } else {
+
+            $mensagem = 'Não foi possível cadastrar a categoria.';
+        }
+    }
 }
 
 ?>
@@ -57,88 +60,134 @@ if (isset($_POST['editar_categoria'])) {
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Editar Categoria - Tour Local</title>
+    <title>Nova categoria - ArTour</title>
+
+    <link
+        rel="stylesheet"
+        href="/Turismo-Lafa/assets/css/admin.css?v=2"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/Turismo-Lafa/assets/css/categoria.css?v=2"
+    >
 
 </head>
 
 <body>
 
-    <header>
+<header>
 
-        <h1>Tour Local</h1>
+    <h1>ArTour</h1>
 
-        <p>Painel administrativo</p>
+    <p>Painel administrativo</p>
 
-    </header>
+</header>
 
-    <main>
 
-        <h2>Editar Categoria</h2>
+<main class="categoria-cadastro">
 
-        <form method="POST">
+    <div class="categoria-cadastro-topo">
 
-            <input
-                type="hidden"
-                name="id_categoria"
-                value="<?= $categoria['id_categoria'] ?>"
-            >
+        <div class="categoria-breadcrumb">
 
-            <label for="nome">
-                Nome da categoria:
-            </label>
+            <a href="index.php">
+                Categorias
+            </a>
 
-            <br>
+            <span>›</span>
 
-            <input
-                type="text"
-                id="nome"
-                name="nome"
-                value="<?= htmlspecialchars($categoria['nome']) ?>"
-                required
-            >
+            <span>Nova categoria</span>
 
-            <br><br>
+        </div>
 
-            <label for="descricao">
-                Descrição:
-            </label>
 
-            <br>
+        <h2>
+            Adicionar categoria
+        </h2>
 
-            <textarea
-                id="descricao"
-                name="descricao"
-                rows="5"
-            ><?= htmlspecialchars($categoria['descricao'] ?? '') ?></textarea>
-
-            <br><br>
-
-            <button
-                type="submit"
-                name="editar_categoria"
-            >
-                Salvar alterações
-            </button>
-
-        </form>
-
-        <br>
-
-        <a href="index.php">
-            Voltar para categorias
-        </a>
-
-    </main>
-
-    <footer>
 
         <p>
-            <a href="../../logout.php">
-                Sair
-            </a>
+            Crie uma categoria para organizar os locais cadastrados no ArTour.
         </p>
 
-    </footer>
+    </div>
+
+
+    <?php if ($mensagem !== ''): ?>
+
+        <div class="categoria-alerta">
+
+            <?= htmlspecialchars($mensagem) ?>
+
+        </div>
+
+    <?php endif; ?>
+
+
+    <form method="POST">
+
+        <div class="categoria-form-card">
+
+            <div class="categoria-form-grupo">
+
+                <label for="nome">
+                    Nome da categoria
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="Ex.: Restaurante"
+                    maxlength="100"
+                    required
+                >
+
+            </div>
+
+
+            <div class="categoria-form-grupo">
+
+                <label for="descricao">
+                    Descrição
+                </label>
+
+                <textarea
+                    id="descricao"
+                    name="descricao"
+                    placeholder="Descreva brevemente essa categoria..."
+                    rows="5"
+                ></textarea>
+
+            </div>
+
+
+            <div class="categoria-form-acoes">
+
+                <a
+                    href="index.php"
+                    class="categoria-btn-cancelar"
+                >
+                    Cancelar
+                </a>
+
+
+                <button
+                    type="submit"
+                    name="cadastrar"
+                    class="categoria-btn-salvar"
+                >
+                    Cadastrar categoria
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</main>
 
 </body>
 

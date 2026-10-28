@@ -18,6 +18,7 @@ class LocalDAO
             SELECT
                 l.*,
                 c.nome AS cidade,
+                c.estado AS estado,
                 cat.nome AS categoria,
                 (
                     SELECT f.caminho
@@ -38,6 +39,30 @@ class LocalDAO
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarPorId($id)
+    {
+        $sql = "
+            SELECT
+                l.*,
+                c.nome AS cidade,
+                c.estado AS estado,
+                cat.nome AS categoria
+            FROM `local` l
+            INNER JOIN cidade c
+                ON l.id_cidade = c.id_cidade
+            INNER JOIN categoria cat
+                ON l.id_categoria = cat.id_categoria
+            WHERE l.id_local = :id_local
+            LIMIT 1
+        ";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(':id_local', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function inserir($local)
@@ -77,65 +102,18 @@ class LocalDAO
 
         $stmt = $this->conexao->prepare($sql);
 
-        $stmt->bindValue(
-            ':id_cidade',
-            $local['id_cidade']
-        );
-
-        $stmt->bindValue(
-            ':id_categoria',
-            $local['id_categoria']
-        );
-
-        $stmt->bindValue(
-            ':nome',
-            $local['nome']
-        );
-
-        $stmt->bindValue(
-            ':descricao',
-            $local['descricao']
-        );
-
-        $stmt->bindValue(
-            ':endereco',
-            $local['endereco']
-        );
-
-        $stmt->bindValue(
-            ':telefone',
-            $local['telefone']
-        );
-
-        $stmt->bindValue(
-            ':email',
-            $local['email']
-        );
-
-        $stmt->bindValue(
-            ':horario_funcionamento',
-            $local['horario_funcionamento']
-        );
-
-        $stmt->bindValue(
-            ':preco',
-            $local['preco']
-        );
-
-        $stmt->bindValue(
-            ':latitude',
-            $local['latitude']
-        );
-
-        $stmt->bindValue(
-            ':longitude',
-            $local['longitude']
-        );
-
-        $stmt->bindValue(
-            ':status',
-            $local['status']
-        );
+        $stmt->bindValue(':id_cidade', $local['id_cidade'], PDO::PARAM_INT);
+        $stmt->bindValue(':id_categoria', $local['id_categoria'], PDO::PARAM_INT);
+        $stmt->bindValue(':nome', $local['nome']);
+        $stmt->bindValue(':descricao', $local['descricao']);
+        $stmt->bindValue(':endereco', $local['endereco']);
+        $stmt->bindValue(':telefone', $local['telefone']);
+        $stmt->bindValue(':email', $local['email']);
+        $stmt->bindValue(':horario_funcionamento', $local['horario_funcionamento']);
+        $stmt->bindValue(':preco', $local['preco']);
+        $stmt->bindValue(':latitude', $local['latitude']);
+        $stmt->bindValue(':longitude', $local['longitude']);
+        $stmt->bindValue(':status', $local['status']);
 
         if ($stmt->execute()) {
             return $this->conexao->lastInsertId();
@@ -157,64 +135,28 @@ class LocalDAO
                 telefone = :telefone,
                 email = :email,
                 horario_funcionamento = :horario_funcionamento,
-                preco = :preco
+                preco = :preco,
+                latitude = :latitude,
+                longitude = :longitude,
+                status = :status
             WHERE id_local = :id_local
         ";
 
         $stmt = $this->conexao->prepare($sql);
 
-        $stmt->bindValue(
-            ':id_cidade',
-            $local['id_cidade'],
-            PDO::PARAM_INT
-        );
-
-        $stmt->bindValue(
-            ':id_categoria',
-            $local['id_categoria'],
-            PDO::PARAM_INT
-        );
-
-        $stmt->bindValue(
-            ':nome',
-            $local['nome']
-        );
-
-        $stmt->bindValue(
-            ':descricao',
-            $local['descricao']
-        );
-
-        $stmt->bindValue(
-            ':endereco',
-            $local['endereco']
-        );
-
-        $stmt->bindValue(
-            ':telefone',
-            $local['telefone']
-        );
-
-        $stmt->bindValue(
-            ':email',
-            $local['email']
-        );
-
-        $stmt->bindValue(
-            ':horario_funcionamento',
-            $local['horario_funcionamento']
-        );
-
-        $stmt->bindValue(
-            ':preco',
-            $local['preco']
-        );
-
-        $stmt->bindValue(
-            ':id_local',
-            $local['id_local'],
-            PDO::PARAM_INT
-        );
+        $stmt->bindValue(':id_cidade', $local['id_cidade'], PDO::PARAM_INT);
+        $stmt->bindValue(':id_categoria', $local['id_categoria'], PDO::PARAM_INT);
+        $stmt->bindValue(':nome', $local['nome']);
+        $stmt->bindValue(':descricao', $local['descricao']);
+        $stmt->bindValue(':endereco', $local['endereco']);
+        $stmt->bindValue(':telefone', $local['telefone']);
+        $stmt->bindValue(':email', $local['email']);
+        $stmt->bindValue(':horario_funcionamento', $local['horario_funcionamento']);
+        $stmt->bindValue(':preco', $local['preco']);
+        $stmt->bindValue(':latitude', $local['latitude']);
+        $stmt->bindValue(':longitude', $local['longitude']);
+        $stmt->bindValue(':status', $local['status']);
+        $stmt->bindValue(':id_local', $local['id_local'], PDO::PARAM_INT);
 
         return $stmt->execute();
     }
@@ -227,11 +169,7 @@ class LocalDAO
         ";
 
         $stmt = $this->conexao->prepare($sql);
-
-        $stmt->bindValue(
-            ':id_local',
-            $id
-        );
+        $stmt->bindValue(':id_local', $id, PDO::PARAM_INT);
 
         return $stmt->execute();
     }

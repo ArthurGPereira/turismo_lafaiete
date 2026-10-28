@@ -21,6 +21,11 @@ class LocalController
         return $this->localDAO->listar();
     }
 
+    public function buscarPorId($id)
+    {
+        return $this->localDAO->buscarPorId($id);
+    }
+
     public function editar($dados)
     {
         return $this->localDAO->editar($dados);

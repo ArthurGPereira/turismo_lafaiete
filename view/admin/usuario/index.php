@@ -32,10 +32,23 @@ $usuarios = $usuarioController->listar();
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Usuários - Tour Local</title>
+    <title>Usuários - ArTour</title>
 
-    <link rel="stylesheet" href="../../../assets/css/global.css">
-    <link rel="stylesheet" href="../../../assets/css/admin.css">
+
+    <link
+        rel="stylesheet"
+        href="/Turismo-Lafa/assets/css/global.css?v=2"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/Turismo-Lafa/assets/css/admin.css?v=2"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/Turismo-Lafa/assets/css/usuario.css?v=2"
+    >
 
     <link
         rel="stylesheet"
@@ -48,15 +61,20 @@ $usuarios = $usuarioController->listar();
 
 <div class="admin-page">
 
-    <!-- SIDEBAR -->
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
     <aside class="admin-sidebar">
 
         <div class="admin-brand">
 
-            <h1>Tour Local</h1>
+            <h1>ArTour</h1>
 
-            <span>Painel administrativo</span>
+            <span>
+                Assistente Regional de Turismo
+            </span>
 
         </div>
 
@@ -72,7 +90,9 @@ $usuarios = $usuarioController->listar();
 
                 <i class="fa-solid fa-chart-line"></i>
 
-                <span>Dashboard</span>
+                <span>
+                    Dashboard
+                </span>
 
             </a>
 
@@ -81,7 +101,9 @@ $usuarios = $usuarioController->listar();
 
                 <i class="fa-solid fa-location-dot"></i>
 
-                <span>Locais</span>
+                <span>
+                    Locais
+                </span>
 
             </a>
 
@@ -90,7 +112,9 @@ $usuarios = $usuarioController->listar();
 
                 <i class="fa-solid fa-layer-group"></i>
 
-                <span>Categorias</span>
+                <span>
+                    Categorias
+                </span>
 
             </a>
 
@@ -99,7 +123,9 @@ $usuarios = $usuarioController->listar();
 
                 <i class="fa-solid fa-city"></i>
 
-                <span>Cidades</span>
+                <span>
+                    Cidades
+                </span>
 
             </a>
 
@@ -108,7 +134,9 @@ $usuarios = $usuarioController->listar();
 
                 <i class="fa-solid fa-users"></i>
 
-                <span>Usuários</span>
+                <span>
+                    Usuários
+                </span>
 
             </a>
 
@@ -118,11 +146,24 @@ $usuarios = $usuarioController->listar();
             </div>
 
 
+            <a href="/Turismo-Lafa/index.php">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Ver página inicial
+                </span>
+
+            </a>
+
+
             <a href="../../perfil.php">
 
                 <i class="fa-solid fa-user"></i>
 
-                <span>Meu perfil</span>
+                <span>
+                    Meu perfil
+                </span>
 
             </a>
 
@@ -135,7 +176,9 @@ $usuarios = $usuarioController->listar();
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
-                <span>Sair da conta</span>
+                <span>
+                    Sair da conta
+                </span>
 
             </a>
 
@@ -144,14 +187,25 @@ $usuarios = $usuarioController->listar();
     </aside>
 
 
-    <!-- CONTEÚDO -->
+
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
 
     <main class="admin-content">
 
 
+        <!-- CABEÇALHO -->
+
         <header class="admin-header">
 
-            <h2>Usuários</h2>
+            <h2>
+
+                <i class="fa-solid fa-users"></i>
+
+                Usuários
+
+            </h2>
 
 
             <div class="admin-user">
@@ -167,7 +221,9 @@ $usuarios = $usuarioController->listar();
 
                 <span>
 
-                    <?= htmlspecialchars($_SESSION['nome_usuario']) ?>
+                    <?= htmlspecialchars(
+                        $_SESSION['nome_usuario']
+                    ) ?>
 
                 </span>
 
@@ -176,11 +232,16 @@ $usuarios = $usuarioController->listar();
         </header>
 
 
+
+        <!-- CONTEÚDO PRINCIPAL -->
+
         <section class="admin-main">
 
 
-            <div class="admin-section">
+            <div class="admin-section usuario-section">
 
+
+                <!-- CABEÇALHO DA SEÇÃO -->
 
                 <div class="admin-section-header">
 
@@ -194,8 +255,9 @@ $usuarios = $usuarioController->listar();
 
                         </h3>
 
+
                         <p>
-                            Gerencie os usuários do Tour Local.
+                            Gerencie os usuários do ArTour.
                         </p>
 
                     </div>
@@ -203,7 +265,7 @@ $usuarios = $usuarioController->listar();
 
                     <a
                         href="cadastro.php"
-                        class="btn"
+                        class="usuario-btn-novo"
                     >
 
                         <i class="fa-solid fa-plus"></i>
@@ -215,25 +277,43 @@ $usuarios = $usuarioController->listar();
                 </div>
 
 
-                <?php if (isset($_GET['erro']) && $_GET['erro'] === 'proprio_usuario'): ?>
 
-                    <div class="admin-alert admin-alert-error">
+                <!-- ALERTA -->
 
-                        Você não pode excluir o próprio usuário.
+                <?php if (
+                    isset($_GET['erro'])
+                    &&
+                    $_GET['erro'] === 'proprio_usuario'
+                ): ?>
+
+                    <div class="usuario-alert usuario-alert-error">
+
+                        <i class="fa-solid fa-circle-exclamation"></i>
+
+                        <span>
+                            Você não pode excluir o próprio usuário.
+                        </span>
 
                     </div>
 
                 <?php endif; ?>
 
 
+
+                <!-- LISTAGEM -->
+
                 <?php if (empty($usuarios)): ?>
 
-                    <div class="admin-empty">
+                    <div class="usuario-vazio">
 
                         <i class="fa-solid fa-users"></i>
 
+                        <h3>
+                            Nenhum usuário cadastrado
+                        </h3>
+
                         <p>
-                            Nenhum usuário cadastrado.
+                            Cadastre um usuário para começar.
                         </p>
 
                     </div>
@@ -242,23 +322,33 @@ $usuarios = $usuarioController->listar();
                 <?php else: ?>
 
 
-                    <div class="admin-table-container">
+                    <div class="usuario-tabela-wrapper">
 
-                        <table>
+                        <table class="usuario-tabela">
 
                             <thead>
 
                                 <tr>
 
-                                    <th>ID</th>
+                                    <th class="col-id">
+                                        ID
+                                    </th>
 
-                                    <th>Nome</th>
+                                    <th class="col-nome">
+                                        Nome
+                                    </th>
 
-                                    <th>E-mail</th>
+                                    <th class="col-email">
+                                        E-mail
+                                    </th>
 
-                                    <th>Tipo</th>
+                                    <th class="col-tipo">
+                                        Tipo
+                                    </th>
 
-                                    <th>Ações</th>
+                                    <th class="col-acoes">
+                                        Ações
+                                    </th>
 
                                 </tr>
 
@@ -271,75 +361,145 @@ $usuarios = $usuarioController->listar();
 
                                     <tr>
 
-                                        <td>
 
-                                            <?= (int) $usuario['id_usuario'] ?>
+                                        <!-- ID -->
 
-                                        </td>
+                                        <td class="col-id">
 
+                                            <span class="usuario-id">
 
-                                        <td>
+                                                #<?= (int) $usuario['id_usuario'] ?>
 
-                                            <?= htmlspecialchars(
-                                                $usuario['nome']
-                                            ) ?>
+                                            </span>
 
                                         </td>
 
 
-                                        <td>
 
-                                            <?= htmlspecialchars(
-                                                $usuario['email']
-                                            ) ?>
+                                        <!-- NOME -->
+
+                                        <td class="col-nome">
+
+                                            <div class="usuario-nome">
+
+                                                <div class="usuario-avatar">
+
+                                                    <?= strtoupper(
+                                                        substr(
+                                                            $usuario['nome'],
+                                                            0,
+                                                            1
+                                                        )
+                                                    ) ?>
+
+                                                </div>
+
+                                                <span>
+
+                                                    <?= htmlspecialchars(
+                                                        $usuario['nome']
+                                                    ) ?>
+
+                                                </span>
+
+                                            </div>
 
                                         </td>
 
 
-                                        <td>
 
-                                            <?= htmlspecialchars(
-                                                $usuario['tipo']
-                                            ) ?>
+                                        <!-- E-MAIL -->
+
+                                        <td class="col-email">
+
+                                            <span class="usuario-email">
+
+                                                <?= htmlspecialchars(
+                                                    $usuario['email']
+                                                ) ?>
+
+                                            </span>
 
                                         </td>
 
 
-                                        <td>
 
-                                            <a
-                                                href="editar.php?id=<?= (int) $usuario['id_usuario'] ?>"
-                                                class="btn btn-secondary"
-                                            >
+                                        <!-- TIPO -->
 
-                                                <i class="fa-solid fa-pen"></i>
-
-                                                Editar
-
-                                            </a>
-
+                                        <td class="col-tipo">
 
                                             <?php if (
-                                                (int) $usuario['id_usuario']
-                                                !==
-                                                (int) $_SESSION['id_usuario']
+                                                $usuario['tipo']
+                                                ===
+                                                'administrador'
                                             ): ?>
 
-                                                <a
-                                                    href="excluir.php?id=<?= (int) $usuario['id_usuario'] ?>"
-                                                    class="btn btn-danger"
-                                                    onclick="return confirm('Tem certeza que deseja excluir este usuário?');"
-                                                >
+                                                <span class="usuario-tipo usuario-tipo-admin">
 
-                                                    <i class="fa-solid fa-trash"></i>
+                                                    <i class="fa-solid fa-shield-halved"></i>
 
-                                                    Excluir
+                                                    Administrador
 
-                                                </a>
+                                                </span>
+
+                                            <?php else: ?>
+
+                                                <span class="usuario-tipo usuario-tipo-normal">
+
+                                                    <i class="fa-solid fa-user"></i>
+
+                                                    Usuário
+
+                                                </span>
 
                                             <?php endif; ?>
 
                                         </td>
+
+
+
+                                        <!-- AÇÕES -->
+
+                                        <td class="col-acoes">
+
+                                            <div class="usuario-acoes">
+
+                                                <a
+                                                    href="editar.php?id=<?= (int) $usuario['id_usuario'] ?>"
+                                                    class="usuario-editar"
+                                                >
+
+                                                    <i class="fa-solid fa-pen"></i>
+
+                                                    Editar
+
+                                                </a>
+
+
+                                                <?php if (
+                                                    (int) $usuario['id_usuario']
+                                                    !==
+                                                    (int) $_SESSION['id_usuario']
+                                                ): ?>
+
+                                                    <a
+                                                        href="excluir.php?id=<?= (int) $usuario['id_usuario'] ?>"
+                                                        class="usuario-excluir"
+                                                        onclick="return confirm('Tem certeza que deseja excluir este usuário?');"
+                                                    >
+
+                                                        <i class="fa-solid fa-trash"></i>
+
+                                                        Excluir
+
+                                                    </a>
+
+                                                <?php endif; ?>
+
+                                            </div>
+
+                                        </td>
+
 
                                     </tr>
 
@@ -350,6 +510,7 @@ $usuarios = $usuarioController->listar();
                         </table>
 
                     </div>
+
 
                 <?php endif; ?>
 

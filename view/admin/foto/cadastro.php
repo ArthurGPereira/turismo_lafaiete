@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nova Foto - Tour Local</title>
+    <title>Nova Foto - ArTour</title>
 
     <link rel="stylesheet" href="../../../assets/css/global.css">
 
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="admin-brand">
 
-            <h1>Tour Local</h1>
+            <h1>ArTour</h1>
 
             <span>Painel administrativo</span>
 
