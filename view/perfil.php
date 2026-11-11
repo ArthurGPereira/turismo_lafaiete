@@ -8,8 +8,10 @@ if (!isset($_SESSION['id_usuario'])) {
 }
 
 require_once '../controller/UsuarioController.php';
+require_once '../controller/FavoritoController.php';
 
 $usuarioController = new UsuarioController();
+$favoritoController = new FavoritoController();
 
 $idUsuario = $_SESSION['id_usuario'];
 
@@ -20,6 +22,7 @@ if (!$usuario) {
 }
 
 $mensagem = '';
+$favoritos = $favoritoController->listarPorUsuario($idUsuario);
 
 if (isset($_POST['salvar_perfil'])) {
 
@@ -98,6 +101,13 @@ if (isset($_POST['salvar_perfil'])) {
     }
 }
 
+if (isset($_POST['remover_favorito'])) {
+    $idLocal = (int) $_POST['id_local'];
+    $favoritoController->remover($idUsuario, $idLocal);
+    header('Location: perfil.php');
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -116,7 +126,57 @@ if (isset($_POST['salvar_perfil'])) {
 
     <link rel="icon" type="image/png" href="../assets/img/artour-simbolo.png">
     <link rel="stylesheet" href="../assets/css/perfil.css?v=1">
+    <style>
+        .favoritos-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
 
+        .favorito-card {
+            border: 1px solid #dfe6ee;
+            border-radius: 12px;
+            padding: 1rem;
+            background: #fff;
+        }
+
+        .favorito-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+        }
+
+        .favorito-card h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .favorito-card p {
+            margin: 0.25rem 0;
+            color: #4a5568;
+        }
+
+        .favorito-acoes {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .favorito-acoes a,
+        .favorito-acoes button {
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #dfe6ee;
+            background: #f8fafc;
+            color: #1f2937;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -225,6 +285,42 @@ if (isset($_POST['salvar_perfil'])) {
             </button>
 
         </form>
+
+        <br>
+
+        <section>
+            <h3>Meus favoritos</h3>
+
+            <?php if (empty($favoritos)): ?>
+                <p>Você ainda não possui locais favoritados.</p>
+            <?php else: ?>
+                <div class="favoritos-lista">
+                    <?php foreach ($favoritos as $favorito): ?>
+                        <article class="favorito-card">
+                            <?php if (!empty($favorito['foto'])): ?>
+                                <img src="../<?= htmlspecialchars($favorito['foto']) ?>" alt="<?= htmlspecialchars($favorito['nome_local']) ?>">
+                            <?php else: ?>
+                                <img src="../assets/img/praca-tiradentes.jpg" alt="<?= htmlspecialchars($favorito['nome_local']) ?>">
+                            <?php endif; ?>
+
+                            <h3><?= htmlspecialchars($favorito['nome_local']) ?></h3>
+                            <p><?= htmlspecialchars($favorito['nome_categoria']) ?></p>
+                            <p><?= htmlspecialchars($favorito['nome_cidade']) ?> - <?= htmlspecialchars($favorito['estado']) ?></p>
+                            <p><?= htmlspecialchars($favorito['endereco']) ?></p>
+
+                            <div class="favorito-acoes">
+                                <a href="local.php?id=<?= (int) $favorito['id_local'] ?>">Ver detalhes</a>
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="remover_favorito" value="1">
+                                    <input type="hidden" name="id_local" value="<?= (int) $favorito['id_local'] ?>">
+                                    <button type="submit">Remover</button>
+                                </form>
+                            </div>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </section>
 
         <br>
 

@@ -12,6 +12,16 @@ class UsuarioDAO
         $this->conexao = Conexao::conectar();
     }
 
+    public function setConexao(PDO $conexao): void
+    {
+        $this->conexao = $conexao;
+    }
+
+    public function getConexao(): PDO
+    {
+        return $this->conexao;
+    }
+
     public function buscarPorEmail($email)
     {
         $sql = "

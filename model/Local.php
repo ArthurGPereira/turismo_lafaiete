@@ -3,6 +3,7 @@
 class Local
 {
     private $id_local;
+    private $id_empresa;
     private $id_cidade;
     private $id_categoria;
     private $nome;
@@ -14,6 +15,7 @@ class Local
     private $preco;
     private $latitude;
     private $longitude;
+    private $cnpj;
     private $status;
 
     public function getIdLocal()
@@ -24,6 +26,16 @@ class Local
     public function setIdLocal($id_local)
     {
         $this->id_local = $id_local;
+    }
+
+    public function getIdEmpresa()
+    {
+        return $this->id_empresa;
+    }
+
+    public function setIdEmpresa($id_empresa)
+    {
+        $this->id_empresa = $id_empresa;
     }
 
     public function getIdCidade()
@@ -134,6 +146,22 @@ class Local
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+    }
+
+    public function getCnpj()
+    {
+        return $this->cnpj;
+    }
+
+    public function setCnpj($cnpj)
+    {
+        if ($cnpj === null || trim((string) $cnpj) === '') {
+            $this->cnpj = null;
+            return;
+        }
+
+        $cnpj = preg_replace('/\D+/', '', (string) $cnpj);
+        $this->cnpj = $cnpj !== '' ? $cnpj : null;
     }
 
     public function getStatus()

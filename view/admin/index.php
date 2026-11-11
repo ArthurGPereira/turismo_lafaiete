@@ -96,7 +96,6 @@ $cidadesRecentes = array_slice($cidades, 0, 5);
                     src="/Turismo-Lafa/assets/img/artour-logo.png"
                     alt="ArTour - Assistente Regional de Turismo"
                 >
-            </a>
         </div>
 
 
@@ -150,6 +149,17 @@ $cidadesRecentes = array_slice($cidades, 0, 5);
 
                 <span>
                     Cidades
+                </span>
+
+            </a>
+
+
+            <a href="empresa/index.php">
+
+                <i class="fa-solid fa-building"></i>
+
+                <span>
+                    Empresas
                 </span>
 
             </a>

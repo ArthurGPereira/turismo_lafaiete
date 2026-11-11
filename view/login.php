@@ -6,6 +6,11 @@ require_once '../controller/UsuarioController.php';
 
 $mensagem = '';
 
+if (!empty($_SESSION['login_erro'])) {
+    $mensagem = $_SESSION['login_erro'];
+    unset($_SESSION['login_erro']);
+}
+
 if (isset($_POST['entrar'])) {
 
     $email = trim($_POST['email']);
@@ -13,30 +18,58 @@ if (isset($_POST['entrar'])) {
 
     $usuarioController = new UsuarioController();
 
-    $usuario = $usuarioController->login($email, $senha);
+    $resultado = $usuarioController->login($email, $senha);
 
-    if ($usuario !== false) {
+    if ($resultado !== false && is_array($resultado) && isset($resultado['tipo']) && strpos($resultado['tipo'], 'empresa_') === 0) {
+        $_SESSION['tipo_usuario'] = 'empresa';
 
-        $_SESSION['id_usuario'] = $usuario['id_usuario'];
-        $_SESSION['nome_usuario'] = $usuario['nome'];
-        $_SESSION['tipo_usuario'] = $usuario['tipo'];
+        if ($resultado['tipo'] === 'empresa_ativa') {
+            $_SESSION['id_usuario'] = $resultado['usuario']['id_usuario'];
+            $_SESSION['nome_usuario'] = $resultado['usuario']['nome'];
+            $_SESSION['tipo_usuario'] = 'empresa';
+            $_SESSION['empresa_status'] = 'ativa';
+            header('Location: /Turismo-Lafa/view/empresa/index.php');
+            exit;
+        }
 
-        if ($usuario['tipo'] === 'administrador') {
-
-            header('Location: admin/index.php');
-
+        if ($resultado['tipo'] === 'empresa_sem_registro') {
+            $mensagem = 'Seu acesso não está habilitado.';
+            $_SESSION['empresa_status'] = 'inativa';
         } else {
+            $mensagem = $resultado['mensagem'];
+            $_SESSION['empresa_status'] = match ($resultado['tipo']) {
+                'empresa_pendente' => 'pendente',
+                'empresa_suspensa' => 'suspensa',
+                'empresa_recusada' => 'recusada',
+                default => 'inativa',
+            };
+        }
+    } elseif ($resultado !== false && is_array($resultado) && isset($resultado['usuario'])) {
+        $_SESSION['id_usuario'] = $resultado['usuario']['id_usuario'];
+        $_SESSION['nome_usuario'] = $resultado['usuario']['nome'];
+        $_SESSION['tipo_usuario'] = $resultado['usuario']['tipo'];
 
-            header('Location: index.php');
-
+        if ($resultado['usuario']['tipo'] === 'administrador') {
+            header('Location: /Turismo-Lafa/view/admin/index.php');
+        } else {
+            header('Location: /Turismo-Lafa/index.php');
         }
 
         exit;
+    } elseif ($resultado !== false) {
+        $_SESSION['id_usuario'] = $resultado['id_usuario'];
+        $_SESSION['nome_usuario'] = $resultado['nome'];
+        $_SESSION['tipo_usuario'] = $resultado['tipo'];
 
+        if ($resultado['tipo'] === 'administrador') {
+            header('Location: /Turismo-Lafa/view/admin/index.php');
+        } else {
+            header('Location: /Turismo-Lafa/index.php');
+        }
+
+        exit;
     } else {
-
         $mensagem = 'E-mail ou senha incorretos.';
-
     }
 }
 
