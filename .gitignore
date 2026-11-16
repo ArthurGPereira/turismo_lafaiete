@@ -1,0 +1,58 @@
+
+# =====================================
+# DADOS E CREDENCIAIS PRIVADAS
+# =====================================
+.env
+.env.*
+!.env.example
+
+config/Conexao.php
+config/segredos.php
+config/*local*
+
+# =====================================
+# BACKUPS E ARQUIVOS TEMPORARIOS
+# =====================================
+*.log
+*.tmp
+*.bak
+*.old
+*.backup
+*.zip
+*.rar
+
+# =====================================
+# BANCO DE DADOS E DADOS PRIVADOS
+# =====================================
+database/backups/
+database/dumps/
+backups/
+backup/
+
+# =====================================
+# ARQUIVOS DE USUARIOS
+# =====================================
+uploads/
+storage/logs/
+storage/cache/
+
+# =====================================
+# DEPENDENCIAS
+# =====================================
+vendor/
+node_modules/
+
+# =====================================
+# CONFIGURACOES LOCAIS
+# =====================================
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# =====================================
+# ARQUIVOS DE TESTE
+# =====================================
+teste.php
+testeSenha.php
