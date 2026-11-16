@@ -57,3 +57,7 @@ testeSenha.php
 
 # Arquivos enviados pelos usuários
 /uploads/
+# Arquivos locais que não fazem parte do projeto
+/LEIA-ME-ARTOUR.txt
+/Novo(a) Documento de Texto.txt
+/teste_evento.php
