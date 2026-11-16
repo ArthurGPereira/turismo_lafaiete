@@ -14,7 +14,7 @@ config/segredos.php
 # =====================================
 *.log
 *.tmp
-*.bak
+*.bak*
 *.old
 *.backup
 *.zip
