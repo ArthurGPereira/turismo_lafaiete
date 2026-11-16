@@ -54,3 +54,6 @@ desktop.ini
 # =====================================
 teste.php
 testeSenha.php
+
+# Arquivos enviados pelos usuários
+/uploads/
