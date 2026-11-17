@@ -181,7 +181,7 @@ a {
     top: 0;
     right: calc((100vw - 100%) / -2);
     bottom: 0;
-    left: 43%;
+    left: calc((100vw - 100%) / -2);
     overflow: hidden;
 }
 
